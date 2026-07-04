@@ -1,0 +1,200 @@
+/* ============================================================
+   Design Tokens — Dr. Leslie Wells
+   Three-layer system:  primitives -> semantic -> component
+   ------------------------------------------------------------
+   Layer 1  PRIMITIVES  raw values. Never reference in markup.
+   Layer 2  SEMANTIC    role-based. BUILD AGAINST THESE.
+   Layer 3  COMPONENT   per-component, derived from semantic.
+
+   Brand guide is NOT final, so Layer 1 is a NEUTRAL PLACEHOLDER
+   (warm-tinted, not pure grey). When the brand lands, swap
+   Layer 1 primitives only — Layers 2 and 3 stay untouched.
+   ============================================================ */
+
+/* ---------------- Layer 1 · Primitives ---------------- */
+:root {
+  /* Warm-neutral scale — tinted, never pure grey  (PLACEHOLDER) */
+  --p-stone-50:  #faf9f7;
+  --p-stone-100: #f3f1ec;
+  --p-stone-200: #e7e2d9;
+  --p-stone-300: #d5cec1;
+  --p-stone-400: #b2aa98;
+  --p-stone-500: #8b8371;
+  --p-stone-600: #6c6555;
+  --p-stone-700: #504a3f;
+  --p-stone-800: #35322b;
+  --p-stone-900: #23211b;
+  --p-stone-950: #15140f;
+
+  /* Accent — muted sage/gold  (PLACEHOLDER, swap for brand) */
+  --p-accent-100: #e8ede3;
+  --p-accent-300: #baccac;
+  --p-accent-500: #7f9b6c;
+  --p-accent-600: #617e4d;   /* passes AA on white */
+  --p-accent-700: #4b6440;
+  --p-accent-900: #2b3925;
+
+  /* Absolutes + state hues */
+  --p-white:     #ffffff;
+  --p-black:     #000000;
+  --p-red-600:   #a63a29;
+  --p-green-600: #3f7a4f;
+  --p-amber-600: #a56b17;
+
+  /* Type families */
+  --p-font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --p-font-sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Type scale — fluid via clamp() */
+  --p-text-xs:   0.78rem;
+  --p-text-sm:   0.875rem;
+  --p-text-base: 1rem;
+  --p-text-lg:   1.1875rem;
+  --p-text-xl:   clamp(1.3rem, 1.10rem + 0.9vw, 1.55rem);
+  --p-text-2xl:  clamp(1.7rem, 1.35rem + 1.6vw, 2.25rem);
+  --p-text-3xl:  clamp(2.2rem, 1.60rem + 2.8vw, 3.15rem);
+  --p-text-4xl:  clamp(2.9rem, 1.90rem + 4.6vw, 4.50rem);
+
+  --p-leading-tight:  1.12;
+  --p-leading-snug:   1.3;
+  --p-leading-normal: 1.6;
+  --p-tracking-tight: -0.02em;
+  --p-tracking-wide:   0.06em;
+  --p-weight-normal:   400;
+  --p-weight-medium:   500;
+  --p-weight-semibold: 600;
+
+  /* Spacing scale (rem) */
+  --p-space-1: 0.25rem;
+  --p-space-2: 0.5rem;
+  --p-space-3: 0.75rem;
+  --p-space-4: 1rem;
+  --p-space-5: 1.5rem;
+  --p-space-6: 2rem;
+  --p-space-7: 3rem;
+  --p-space-8: 4rem;
+  --p-space-9: 6rem;
+  --p-space-10: 8rem;
+
+  /* Radii */
+  --p-radius-sm:   0.25rem;
+  --p-radius-md:   0.5rem;
+  --p-radius-lg:   0.9rem;
+  --p-radius-full: 999px;
+
+  /* Shadows — soft, warm-tinted */
+  --p-shadow-sm: 0 1px 2px rgba(21,20,15,0.06);
+  --p-shadow-md: 0 4px 16px rgba(21,20,15,0.08);
+  --p-shadow-lg: 0 18px 48px rgba(21,20,15,0.12);
+
+  /* Layout + motion */
+  --p-container: 72rem;
+  --p-measure:   66ch;
+  --p-ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --p-dur-fast:  140ms;
+  --p-dur-med:   260ms;
+}
+
+/* ---------------- Layer 2 · Semantic ---------------- */
+/* These are the ONLY tokens you use when building pages. */
+:root {
+  /* Surfaces */
+  --color-bg:            var(--p-stone-50);
+  --color-surface:       var(--p-white);
+  --color-surface-alt:   var(--p-stone-100);
+  --color-border:        var(--p-stone-200);
+  --color-border-strong: var(--p-stone-300);
+
+  /* Text */
+  --color-text:           var(--p-stone-900);
+  --color-text-muted:     var(--p-stone-600);
+  --color-text-subtle:    var(--p-stone-500);
+  --color-text-on-accent: var(--p-white);
+
+  /* Brand / interactive */
+  --color-primary:        var(--p-accent-600);
+  --color-primary-hover:  var(--p-accent-700);
+  --color-primary-soft:   var(--p-accent-100);
+  --color-focus-ring:     var(--p-accent-500);
+
+  /* Feedback */
+  --color-danger:  var(--p-red-600);
+  --color-success: var(--p-green-600);
+  --color-warning: var(--p-amber-600);
+
+  /* Typography roles */
+  --font-heading: var(--p-font-serif);
+  --font-body:    var(--p-font-sans);
+
+  /* Elevation */
+  --shadow-card: var(--p-shadow-md);
+  --shadow-pop:  var(--p-shadow-lg);
+}
+
+/* Dark mode — overrides the SEMANTIC layer only.
+   Respects OS preference; [data-theme] lets a toggle force it. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg:            var(--p-stone-950);
+    --color-surface:       var(--p-stone-900);
+    --color-surface-alt:   var(--p-stone-800);
+    --color-border:        var(--p-stone-800);
+    --color-border-strong: var(--p-stone-700);
+
+    --color-text:           var(--p-stone-100);
+    --color-text-muted:     var(--p-stone-400);
+    --color-text-subtle:    var(--p-stone-500);
+    --color-text-on-accent: var(--p-stone-950);
+
+    --color-primary:        var(--p-accent-300);
+    --color-primary-hover:  var(--p-accent-100);
+    --color-primary-soft:   var(--p-accent-900);
+    --color-focus-ring:     var(--p-accent-300);
+  }
+}
+[data-theme="dark"] {
+  --color-bg:            var(--p-stone-950);
+  --color-surface:       var(--p-stone-900);
+  --color-surface-alt:   var(--p-stone-800);
+  --color-border:        var(--p-stone-800);
+  --color-border-strong: var(--p-stone-700);
+
+  --color-text:           var(--p-stone-100);
+  --color-text-muted:     var(--p-stone-400);
+  --color-text-subtle:    var(--p-stone-500);
+  --color-text-on-accent: var(--p-stone-950);
+
+  --color-primary:        var(--p-accent-300);
+  --color-primary-hover:  var(--p-accent-100);
+  --color-primary-soft:   var(--p-accent-900);
+  --color-focus-ring:     var(--p-accent-300);
+}
+
+/* ---------------- Layer 3 · Component ---------------- */
+/* Per-component tokens derived from semantic. Reference these
+   inside component CSS so a component can be retuned in one place. */
+:root {
+  /* Button */
+  --button-bg:            var(--color-primary);
+  --button-bg-hover:      var(--color-primary-hover);
+  --button-text:          var(--color-text-on-accent);
+  --button-radius:        var(--p-radius-md);
+  --button-pad-y:         var(--p-space-3);
+  --button-pad-x:         var(--p-space-5);
+
+  /* Card */
+  --card-bg:              var(--color-surface);
+  --card-border:          var(--color-border);
+  --card-radius:          var(--p-radius-lg);
+  --card-shadow:          var(--shadow-card);
+  --card-pad:             var(--p-space-6);
+
+  /* Header / footer */
+  --header-bg:            color-mix(in srgb, var(--color-bg) 86%, transparent);
+  --header-border:        var(--color-border);
+  --footer-bg:            var(--color-surface-alt);
+
+  /* Links */
+  --link-color:           var(--color-primary);
+  --link-color-hover:     var(--color-primary-hover);
+}
