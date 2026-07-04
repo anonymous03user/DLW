@@ -1,0 +1,11 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local review artifacts
+.screenshots/
+*.log
+
+# Node (only if a tool is ever run locally; nothing is committed)
+node_modules/
