@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO -->
+  <title>Her Story | Dr. Leslie Wells</title>
+  <meta name="description" content="From a steel rod at fourteen to two decades of chiropractic and energy work, to the founding of Faith Consciousness: the story of Dr. Leslie Wells, in her words." />
+  <link rel="canonical" href="https://drlesliewells.com/story.html" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Her Story | Dr. Leslie Wells" />
+  <meta property="og:description" content="From the spine to the spirit: the arc behind the work of Dr. Leslie Wells." />
+  <meta property="og:url" content="https://drlesliewells.com/story.html" />
+  <meta property="og:image" content="https://drlesliewells.com/assets/images/horizon-band.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts: preload the two critical subsets, then styles -->
+  <link rel="preload" href="/assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/site.css" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Her Story | Dr. Leslie Wells",
+    "url": "https://drlesliewells.com/story.html",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Dr. Leslie Wells",
+      "honorificSuffix": "DC",
+      "url": "https://drlesliewells.com/"
+    }
+  }
+  </script>
+
+  <style>
+    /* ---------- Story: hero ---------- */
+    .story-hero { padding-block: var(--p-space-9) var(--p-space-7); }
+    .story-hero h1 { max-width: 20ch; }
+    .story-hero__lede {
+      font-size: var(--p-text-lg);
+      color: var(--color-text-muted);
+      max-width: 52ch;
+    }
+
+    /* ---------- The chapters: a quiet timeline ---------- */
+    .chapters { padding-block: var(--p-space-8); }
+    .chapter {
+      position: relative;
+      display: grid;
+      grid-template-columns: 9rem minmax(0, 1fr);
+      gap: var(--p-space-6);
+      padding-block: var(--p-space-6) var(--p-space-7);
+    }
+    /* the connecting hairline */
+    .chapter::before {
+      content: "";
+      position: absolute;
+      left: calc(9rem + var(--p-space-6) / 2 - 0.5px);
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--color-border);
+    }
+    .chapter:first-of-type::before { top: var(--p-space-6); }
+    .chapter:last-of-type::before { bottom: auto; height: var(--p-space-6); }
+    /* the gold star node */
+    .chapter__mark {
+      position: absolute;
+      left: calc(9rem + var(--p-space-6) / 2);
+      top: var(--p-space-6);
+      transform: translate(-50%, 0.1em);
+      color: var(--color-primary);
+      background: var(--color-bg);
+      line-height: 1;
+      padding-block: var(--p-space-1);
+    }
+    .chapter__when {
+      text-align: right;
+      font-family: var(--font-heading);
+      font-size: var(--p-text-2xl);
+      font-weight: var(--p-weight-medium);
+      color: var(--color-text-subtle);
+      line-height: var(--p-leading-tight);
+      padding-right: var(--p-space-6);
+    }
+    .chapter__body { padding-left: var(--p-space-6); max-width: var(--p-measure); }
+    .chapter__body h2 { font-size: var(--p-text-2xl); margin-bottom: var(--p-space-3); }
+    .chapter__body p { color: var(--color-text-muted); }
+    .chapter__body p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 700px) {
+      .chapter { grid-template-columns: 1fr; gap: var(--p-space-2); padding-left: var(--p-space-6); }
+      .chapter::before { left: 0; }
+      .chapter__mark { left: 0; }
+      .chapter__when { text-align: left; padding-right: 0; font-size: var(--p-text-xl); }
+      .chapter__body { padding-left: 0; }
+    }
+
+    /* ---------- The testimony ---------- */
+    .testimony { background: var(--color-surface-alt); }
+    .testimony__quote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: var(--p-text-xl);
+      color: var(--color-text);
+      border-left: 2px solid var(--color-primary);
+      padding-left: var(--p-space-5);
+      max-width: var(--p-measure);
+      margin-bottom: var(--p-space-5);
+    }
+    .testimony__note {
+      font-size: var(--p-text-sm);
+      color: var(--color-text-subtle);
+      max-width: var(--p-measure);
+    }
+
+    /* ---------- Beyond the practice ---------- */
+    .beyond__body { max-width: var(--p-measure); }
+
+    /* ---------- Credentials ---------- */
+    .credentials dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: var(--p-space-5);
+      margin: 0;
+    }
+    .credentials .cred {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--card-radius);
+      padding: var(--p-space-5);
+    }
+    .credentials dt {
+      font-weight: var(--p-weight-semibold);
+      margin-bottom: var(--p-space-2);
+    }
+    .credentials dd {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--p-text-sm);
+    }
+    .flag {
+      display: inline-block;
+      font-size: var(--p-text-xs);
+      font-weight: var(--p-weight-medium);
+      letter-spacing: var(--p-tracking-wide);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-warning);
+      border-radius: var(--p-radius-full);
+      padding: calc(var(--p-space-1) / 2) var(--p-space-3);
+      margin-left: var(--p-space-2);
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="/">Dr.&nbsp;Leslie&nbsp;Wells</a>
+      <button class="site-header__toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-header__nav" id="site-nav" aria-label="Primary">
+        <a href="/story.html">Her Story</a>
+        <a href="/speaking.html">Speaking</a>
+        <a href="/healing-events.html">Healing Events</a>
+        <a href="/sessions.html">Sessions</a>
+        <a href="/retreats.html">Retreats &amp; Talks</a>
+        <a class="btn" href="/book-dr-leslie.html">Book Dr. Leslie</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="story-hero">
+      <div class="container">
+        <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Her story</p>
+        <h1>From the spine to the spirit</h1>
+        <p class="story-hero__lede">
+          Every part of Dr. Leslie's work traces back to her own body: a spine
+          that failed early, a healing that followed, and a practice that kept
+          deepening until it reached the level of faith itself.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ THE CHAPTERS ============ -->
+    <section class="chapters" aria-label="Her story, chapter by chapter">
+      <div class="container">
+
+        <article class="chapter">
+          <span class="chapter__mark" aria-hidden="true">&#10022;</span>
+          <p class="chapter__when">Fourteen</p>
+          <div class="chapter__body">
+            <h2>A steel rod at fourteen</h2>
+            <p>
+              A severe childhood spinal disorder led to spinal-fusion surgery
+              at fourteen: multiple vertebral joints fused with a steel rod,
+              followed by months in a body cast. By her early twenties she was
+              living with sciatica and chronic low-back pain.
+            </p>
+            <p>
+              It was chiropractic care that finally brought relief. That
+              experience, suffering first, then a way out, became the spark
+              for the rest of her life's work.
+            </p>
+          </div>
+        </article>
+
+        <article class="chapter">
+          <span class="chapter__mark" aria-hidden="true">&#10022;</span>
+          <p class="chapter__when">The doctor</p>
+          <div class="chapter__body">
+            <h2>The chiropractor's calling</h2>
+            <p>
+              She trained as a Doctor of Chiropractic at Life University in
+              the Atlanta metro, then built a practice helping others out of
+              the kind of pain she knew firsthand.
+            </p>
+            <p>
+              Over more than two decades, she noticed that spinal and health
+              patterns tended to recur. That observation pulled her from
+              structural care toward the nervous system, the core causes
+              beneath the symptoms, and the energetic dimension of healing.
+            </p>
+          </div>
+        </article>
+
+        <article class="chapter">
+          <span class="chapter__mark" aria-hidden="true">&#10022;</span>
+          <p class="chapter__when">2012</p>
+          <div class="chapter__body">
+            <h2>The download</h2>
+            <p>
+              In 2012, while working on patients, she experienced what she
+              describes as a spontaneous download: the beginning of the
+              teaching she now calls Faith Consciousness, an understanding of
+              human consciousness moving through three eras, rooted in
+              scripture, revealed through science, realized in the individual.
+            </p>
+            <p>
+              The teaching itself lives at
+              <a href="https://faithconsciousness.com">faithconsciousness.com</a>.
+              This site is where to bring her, and it, to your community.
+            </p>
+          </div>
+        </article>
+
+        <article class="chapter">
+          <span class="chapter__mark" aria-hidden="true">&#10022;</span>
+          <p class="chapter__when">2025</p>
+          <div class="chapter__body">
+            <h2>The testimony</h2>
+            <p>
+              In 2025, Dr. Leslie was diagnosed with breast cancer. She kept
+              it largely private. What happened next is hers to tell, and she
+              tells it below.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ THE TESTIMONY, IN HER WORDS ============ -->
+    <section class="section testimony" aria-labelledby="testimony-title">
+      <div class="container">
+        <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Her account</p>
+        <h2 id="testimony-title">A spontaneous healing</h2>
+        <div class="testimony__quote">
+          <p>
+            By embodying the principles of Faith Consciousness, alongside
+            specific tools and lifestyle changes, she experienced what she
+            calls a spontaneous healing. She describes the result as proof
+            that she now carries "the formula of change" in her own field,
+            applicable to health, to relationships, and to finances alike.
+          </p>
+        </div>
+        <p class="testimony__note">
+          This is Dr. Leslie's account of her own experience. Her first-person
+          telling will appear here, verbatim, once she supplies it. It is her
+          testimony, not medical advice, and no medical claims are made on
+          her behalf.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CREDENTIALS & MODALITIES ============ -->
+    <section class="section credentials" aria-labelledby="credentials-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Training</p>
+          <h2 id="credentials-title">Credentials &amp; modalities</h2>
+          <p class="section-head__lede">
+            The clinical grounding beneath the spiritual work.
+          </p>
+        </div>
+        <dl>
+          <div class="cred">
+            <dt>Doctor of Chiropractic (DC)</dt>
+            <dd>Life University, Marietta, Georgia. More than two decades in practice.</dd>
+          </div>
+          <div class="cred">
+            <dt>Doctor of Divinity (DD) <span class="flag">To be confirmed</span></dt>
+            <dd>She holds the DD post-nominal; the granting institution will be listed here once confirmed.</dd>
+          </div>
+          <div class="cred">
+            <dt>Network Spinal &amp; SRI breathwork</dt>
+            <dd>Network Spinal Energetics facilitator; guided Somato Respiratory Integration breathwork features in her retreats and talks.</dd>
+          </div>
+          <div class="cred">
+            <dt>Her own modalities</dt>
+            <dd>The Technology of Faith, E.V.E. (Energetic Vibrational Exchange), light-language activation, and Spiritual Attunement sessions.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ BEYOND THE PRACTICE ============ -->
+    <section class="section" aria-labelledby="beyond-title">
+      <div class="container">
+        <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Beyond the practice</p>
+        <h2 id="beyond-title">Wells for Wells</h2>
+        <p class="text-muted beyond__body">
+          Her outreach has reached as far as Uganda. By her account, her
+          Wells for Wells initiative brought fresh running water for the
+          first time to the Vine School near Masaka in 2016, and in 2012 she
+          served as emcee of a Global Women's Summit in Uganda, the same
+          season the teaching began.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-band" data-theme="dark">
+          <h2 id="cta-title">Invite her to tell it in person</h2>
+          <p class="cta-band__lede">
+            The story lands differently in a room. Book Dr. Leslie for your
+            stage, gathering, or community event.
+          </p>
+          <div class="cta-band__actions">
+            <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
+            <p class="cta-band__alt">
+              Or start with <a href="/speaking.html">her speaking page</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <p class="site-footer__brand">Dr. Leslie Wells</p>
+          <p class="site-footer__note">
+            Founder of Faith Consciousness. The teaching lives at
+            <a data-site-href="teaching_site_url" href="https://faithconsciousness.com">faithconsciousness.com</a>;
+            this is where to book her.
+          </p>
+          <p class="site-footer__note" data-site="radio_line">
+            Faith Consciousness Radio with Dr. Leslie airs Thursdays, 3 to 4 PM,
+            on WSIC (100.7 FM / 105.9 FM / 1400 AM).
+          </p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>On this site</h2>
+          <ul>
+            <li><a href="/story.html">Her Story</a></li>
+            <li><a href="/speaking.html">Speaking</a></li>
+            <li><a href="/healing-events.html">Healing Events</a></li>
+            <li><a href="/sessions.html">Healing Sessions</a></li>
+            <li><a href="/retreats.html">Retreats &amp; Intro Talks</a></li>
+            <li><a href="/book-dr-leslie.html">Book Dr. Leslie</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Connect</h2>
+          <ul>
+            <li><a data-site-href="email" href="mailto:DrLeslieWells@gmail.com">DrLeslieWells@gmail.com</a></li>
+            <li><span data-site="phone_text_line">Text 743-900-5574</span></li>
+            <li><a data-site-href="youtube_url" href="https://www.youtube.com/channel/UCfDvR4XYsRokVp6NXiUWM1g">YouTube</a></li>
+            <li><a data-site-href="linkedin_url" href="https://www.linkedin.com/in/leslie-wells-23040346/">LinkedIn</a></li>
+            <li><span data-site="location_line">Charlotte, North Carolina</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; <span id="year">2026</span> Dr. Leslie Wells. All rights reserved.</p>
+        <p><a href="https://faithconsciousness.com">Faith Consciousness &rarr;</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/render.js" defer></script>
+</body>
+</html>

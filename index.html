@@ -5,93 +5,355 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- SEO -->
-  <title>Dr. Leslie Wells</title>
-  <meta name="description" content="Dr. Leslie Wells — coach and minister. Placeholder description; replace with the real one from the scope doc." />
-  <link rel="canonical" href="https://example.com/" />
+  <title>Dr. Leslie Wells | Speaker &amp; Energy-Medicine Facilitator | Charlotte, NC</title>
+  <meta name="description" content="Speaker, energy-medicine facilitator, radio host, and founder of Faith Consciousness. Book Dr. Leslie Wells for keynotes, healing events, sessions, and retreats." />
+  <link rel="canonical" href="https://drlesliewells.com/" />
 
-  <!-- Open Graph / Twitter (replace url + image at launch) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Dr. Leslie Wells" />
-  <meta property="og:description" content="Coach and minister." />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta property="og:title" content="Dr. Leslie Wells | Speaker &amp; Energy-Medicine Facilitator" />
+  <meta property="og:description" content="Keynotes, healing events, one-on-one sessions, and the Faith Consciousness retreats. One place to book Dr. Leslie." />
+  <meta property="og:url" content="https://drlesliewells.com/" />
+  <meta property="og:image" content="https://drlesliewells.com/assets/images/horizon-band.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Design tokens first, then base -->
+  <!-- Fonts: preload the two critical subsets, then styles -->
+  <link rel="preload" href="/assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/site.css" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Structured data: who she is -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Leslie Wells",
+    "honorificSuffix": "DC",
+    "jobTitle": "Speaker, energy-medicine facilitator, radio host",
+    "description": "Doctor of Chiropractic, international inspirational speaker, energy-medicine facilitator, and founder of Faith Consciousness.",
+    "url": "https://drlesliewells.com/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Charlotte", "addressRegion": "NC", "addressCountry": "US" },
+    "sameAs": [
+      "https://faithconsciousness.com",
+      "https://www.youtube.com/channel/UCfDvR4XYsRokVp6NXiUWM1g",
+      "https://www.linkedin.com/in/leslie-wells-23040346/"
+    ]
+  }
+  </script>
+
+  <style>
+    /* ---------- Home: hero ---------- */
+    .hero { padding-block: var(--p-space-9) var(--p-space-8); }
+    .hero__title {
+      max-width: 24ch;
+      margin-bottom: var(--p-space-5);
+    }
+    .hero__lede {
+      font-size: var(--p-text-lg);
+      color: var(--color-text-muted);
+      max-width: 52ch;
+      margin-bottom: var(--p-space-5);
+    }
+    .hero__testimony {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: var(--p-text-lg);
+      color: var(--color-text);
+      border-left: 2px solid var(--color-primary);
+      padding-left: var(--p-space-5);
+      max-width: 52ch;
+      margin-bottom: var(--p-space-6);
+    }
+    .hero__testimony a { color: var(--color-primary); }
+    .hero__actions {
+      display: flex;
+      gap: var(--p-space-4);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    /* Reserved slot: the announcement chip renders here without layout shift */
+    .hero__announce { min-height: 3.25rem; margin-bottom: var(--p-space-5); }
+
+    /* ---------- Featured-on strip ---------- */
+    .featured {
+      border-block: 1px solid var(--color-border);
+      padding-block: var(--p-space-5);
+    }
+    .featured__inner {
+      display: flex;
+      align-items: center;
+      gap: var(--p-space-5) var(--p-space-7);
+      flex-wrap: wrap;
+    }
+    .featured__label {
+      font-size: var(--p-text-xs);
+      letter-spacing: var(--p-tracking-wide);
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      margin: 0;
+    }
+    .featured ul {
+      list-style: none;
+      display: flex;
+      gap: var(--p-space-5) var(--p-space-7);
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+    .featured li {
+      font-family: var(--font-heading);
+      font-size: var(--p-text-lg);
+      font-weight: var(--p-weight-medium);
+      letter-spacing: var(--p-tracking-wide);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ---------- Story band ---------- */
+    .story-band { position: relative; }
+    .story-band__media {
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-pop);
+    }
+    .story-band__media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .story-band__card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      padding: var(--p-space-7);
+      max-width: 34rem;
+      margin-top: calc(-1 * var(--p-space-8));
+      margin-inline: var(--p-space-6);
+      position: relative;
+    }
+    .story-band__card p { color: var(--color-text-muted); }
+    @media (max-width: 860px) {
+      .story-band__card {
+        margin-inline: var(--p-space-3);
+        padding: var(--p-space-6);
+        margin-top: calc(-1 * var(--p-space-6));
+      }
+    }
+
+    /* ---------- Upcoming ---------- */
+    .upcoming .event-list { min-height: 18rem; }
+
+    /* ---------- Teacher ---------- */
+    .teacher { background: var(--color-surface-alt); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="site-header__brand" href="/">Dr. Leslie Wells</a>
-      <nav class="site-header__nav" aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/bio.html">About</a>
-        <a href="/offerings.html">Offerings</a>
-        <a class="btn" href="/#contact">Work with me</a>
+      <a class="site-header__brand" href="/">Dr.&nbsp;Leslie&nbsp;Wells</a>
+      <button class="site-header__toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-header__nav" id="site-nav" aria-label="Primary">
+        <a href="/story.html">Her Story</a>
+        <a href="/speaking.html">Speaking</a>
+        <a href="/healing-events.html">Healing Events</a>
+        <a href="/sessions.html">Sessions</a>
+        <a href="/retreats.html">Retreats &amp; Talks</a>
+        <a class="btn" href="/book-dr-leslie.html">Book Dr. Leslie</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="section hero">
+
+    <!-- ============ HERO: who she is + the two paths ============ -->
+    <section class="hero">
       <div class="container">
-        <p class="hero__eyebrow text-muted">Placeholder scaffold — pipeline check</p>
-        <h1 class="hero__title">A calm, grounded place to begin.</h1>
-        <p class="hero__lead">
-          This is the starter page. It exists to confirm the tokens load and the
-          Cloudflare Pages deploy pipeline works. Replace with the real home
-          hero from the scope spec.
+        <div class="hero__announce">
+          <div class="announce" data-announcement hidden></div>
+        </div>
+        <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
+        <h1 class="hero__title">Where faith meets frequency.</h1>
+        <p class="hero__lede">
+          Speaker, energy-medicine facilitator, radio host, and founder of
+          Faith Consciousness. For more than two decades, Dr. Leslie has helped
+          people move out of suffering and into the creative power of their
+          own faith.
         </p>
-        <p>
-          <a class="btn" href="/offerings.html">Explore the offerings</a>
-          <a class="btn btn--ghost" href="/bio.html">Meet Dr. Wells</a>
+        <p class="hero__testimony">
+          In 2025 she faced a breast cancer diagnosis and, by her own account,
+          experienced a spontaneous healing by living the very principles she
+          teaches. <a href="/story.html">Her story, in her words</a>.
         </p>
+        <div class="hero__actions">
+          <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
+          <a class="btn btn--ghost btn--lg" href="https://faithconsciousness.com">Explore the teaching</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED-ON STRIP: documented appearances ============ -->
+    <section class="featured" aria-label="Featured on">
+      <div class="container featured__inner">
+        <p class="featured__label">Featured on</p>
+        <ul>
+          <li>Coast to Coast AM</li>
+          <li>WSIC Radio</li>
+          <li>Natural Awakenings</li>
+          <li>Soulivity Magazine</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ OFFERINGS: rendered from data/offerings.json ============ -->
+    <section class="section" aria-labelledby="offerings-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Work with her</p>
+          <h2 id="offerings-title">Ways to work together</h2>
+          <p class="section-head__lede">
+            Whether you are planning an event or seeking your own healing,
+            every path below begins at the same door.
+          </p>
+        </div>
+        <div class="offers-grid" data-offerings></div>
+        <noscript>
+          <ul>
+            <li><a href="/speaking.html">Speaking</a></li>
+            <li><a href="/healing-events.html">Healing Events &amp; Health Fairs</a></li>
+            <li><a href="/sessions.html">Healing Sessions</a></li>
+            <li><a href="/retreats.html">Retreats &amp; Intro Talks</a></li>
+          </ul>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============ STORY BAND ============ -->
+    <section class="section story-band" aria-labelledby="story-title">
+      <div class="container">
+        <div class="story-band__media">
+          <img src="/assets/images/horizon-band.jpg" alt="A warm dawn horizon over still water" width="1600" height="900" loading="lazy" />
+        </div>
+        <div class="story-band__card">
+          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Her story</p>
+          <h2 id="story-title">From the spine to the spirit</h2>
+          <p>
+            A steel rod at fourteen. A chiropractor's calling. Two decades of
+            practice that kept deepening, from the structure of the body to
+            the energy that moves through it. Her story is the reason the
+            work exists.
+          </p>
+          <a href="/story.html">Read her story &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UPCOMING: rendered from data/events.json ============ -->
+    <section class="section upcoming" aria-labelledby="upcoming-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__row">
+            <div>
+              <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>On the calendar</p>
+              <h2 id="upcoming-title">Upcoming dates</h2>
+              <p class="section-head__lede">Retreats and free intro talks around Charlotte and Mooresville.</p>
+            </div>
+            <p class="section-head__action"><a href="/retreats.html">All dates &amp; registration &rarr;</a></p>
+          </div>
+        </div>
+        <ol class="event-list" data-events data-limit="3"></ol>
+        <noscript><p>See <a href="/retreats.html">Retreats &amp; Intro Talks</a> for current dates.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ============ THE TEACHER: rendered from data/bio.json ============ -->
+    <section class="section teacher" aria-labelledby="teacher-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>The teacher</p>
+          <h2 id="teacher-title">Meet Dr. Leslie</h2>
+        </div>
+        <div class="bio-card" data-bio></div>
+        <noscript><p><a href="/story.html">Read about Dr. Leslie Wells</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-band" data-theme="dark">
+          <h2 id="cta-title">Bring Dr. Leslie to your community</h2>
+          <p class="cta-band__lede">
+            Keynotes, healing events, health fairs, one-on-one sessions, and
+            retreat registration all begin with one simple inquiry.
+          </p>
+          <div class="cta-band__actions">
+            <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
+            <p class="cta-band__alt">
+              Or reach out directly: <span data-site="phone_text_line">Text 743-900-5574</span>
+              &middot; <a data-site-href="email" href="mailto:DrLeslieWells@gmail.com">email her</a>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p class="text-muted">&copy; <span id="year"></span> Dr. Leslie Wells. All rights reserved.</p>
+      <div class="site-footer__grid">
+        <div>
+          <p class="site-footer__brand">Dr. Leslie Wells</p>
+          <p class="site-footer__note">
+            Founder of Faith Consciousness. The teaching lives at
+            <a data-site-href="teaching_site_url" href="https://faithconsciousness.com">faithconsciousness.com</a>;
+            this is where to book her.
+          </p>
+          <p class="site-footer__note" data-site="radio_line">
+            Faith Consciousness Radio with Dr. Leslie airs Thursdays, 3 to 4 PM,
+            on WSIC (100.7 FM / 105.9 FM / 1400 AM).
+          </p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>On this site</h2>
+          <ul>
+            <li><a href="/story.html">Her Story</a></li>
+            <li><a href="/speaking.html">Speaking</a></li>
+            <li><a href="/healing-events.html">Healing Events</a></li>
+            <li><a href="/sessions.html">Healing Sessions</a></li>
+            <li><a href="/retreats.html">Retreats &amp; Intro Talks</a></li>
+            <li><a href="/book-dr-leslie.html">Book Dr. Leslie</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Connect</h2>
+          <ul>
+            <li><a data-site-href="email" href="mailto:DrLeslieWells@gmail.com">DrLeslieWells@gmail.com</a></li>
+            <li><span data-site="phone_text_line">Text 743-900-5574</span></li>
+            <li><a data-site-href="youtube_url" href="https://www.youtube.com/channel/UCfDvR4XYsRokVp6NXiUWM1g">YouTube</a></li>
+            <li><a data-site-href="linkedin_url" href="https://www.linkedin.com/in/leslie-wells-23040346/">LinkedIn</a></li>
+            <li><span data-site="location_line">Charlotte, North Carolina</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; <span id="year">2026</span> Dr. Leslie Wells. All rights reserved.</p>
+        <p><a href="https://faithconsciousness.com">Faith Consciousness &rarr;</a></p>
+      </div>
     </div>
   </footer>
 
-  <style>
-    /* Starter section styles — semantic tokens only. Real sections get their own CSS. */
-    .site-header {
-      position: sticky; top: 0; z-index: 10;
-      background: var(--header-bg);
-      backdrop-filter: saturate(1.2) blur(8px);
-      border-bottom: 1px solid var(--header-border);
-    }
-    .site-header__inner {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: var(--p-space-5); padding-block: var(--p-space-4);
-    }
-    .site-header__brand {
-      font-family: var(--font-heading); font-weight: var(--p-weight-semibold);
-      font-size: var(--p-text-lg); color: var(--color-text); text-decoration: none;
-    }
-    .site-header__nav { display: flex; align-items: center; gap: var(--p-space-5); }
-    .site-header__nav a { color: var(--color-text-muted); text-decoration: none; }
-    .site-header__nav a:hover { color: var(--color-text); }
-    .site-header__nav a.btn { color: var(--button-text); }
-
-    .hero { padding-block: var(--p-space-10); }
-    .hero__eyebrow { text-transform: uppercase; letter-spacing: var(--p-tracking-wide); font-size: var(--p-text-sm); }
-    .hero__title { margin-top: var(--p-space-2); }
-    .hero__lead { font-size: var(--p-text-lg); color: var(--color-text-muted); }
-
-    .site-footer { background: var(--footer-bg); border-top: 1px solid var(--color-border); padding-block: var(--p-space-6); }
-
-    @media (max-width: 480px) {
-      .site-header__nav { gap: var(--p-space-3); font-size: var(--p-text-sm); }
-    }
-  </style>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/render.js" defer></script>
 </body>
 </html>

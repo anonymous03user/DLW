@@ -114,7 +114,9 @@
   /* Text */
   --color-text:           var(--p-stone-900);
   --color-text-muted:     var(--p-stone-600);
-  --color-text-subtle:    var(--p-stone-500);
+  /* subtle must still clear 4.5:1 at small sizes; stone-500 does not
+     (3.5:1 on cream), so it maps one step darker. A11y fix, not brand. */
+  --color-text-subtle:    var(--p-stone-600);
   --color-text-on-accent: var(--p-white);
 
   /* Brand / interactive */
@@ -149,7 +151,7 @@
 
     --color-text:           var(--p-stone-100);
     --color-text-muted:     var(--p-stone-400);
-    --color-text-subtle:    var(--p-stone-500);
+    --color-text-subtle:    var(--p-stone-400); /* stone-500 fails AA on dark surface-alt */
     --color-text-on-accent: var(--p-stone-950);
 
     --color-primary:        var(--p-accent-300);
@@ -167,7 +169,7 @@
 
   --color-text:           var(--p-stone-100);
   --color-text-muted:     var(--p-stone-400);
-  --color-text-subtle:    var(--p-stone-500);
+  --color-text-subtle:    var(--p-stone-400); /* stone-500 fails AA on dark surface-alt */
   --color-text-on-accent: var(--p-stone-950);
 
   --color-primary:        var(--p-accent-300);

@@ -13,6 +13,7 @@
       toggle.addEventListener("click", function () {
         var open = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", String(!open));
+        toggle.setAttribute("aria-label", open ? "Menu" : "Close menu");
         nav.classList.toggle("is-open", !open);
         document.body.classList.toggle("nav-open", !open);
       });
@@ -20,6 +21,7 @@
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && nav.classList.contains("is-open")) {
           toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Menu");
           nav.classList.remove("is-open");
           document.body.classList.remove("nav-open");
           toggle.focus();
