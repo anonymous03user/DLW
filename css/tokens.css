@@ -6,33 +6,38 @@
    Layer 2  SEMANTIC    role-based. BUILD AGAINST THESE.
    Layer 3  COMPONENT   per-component, derived from semantic.
 
-   Brand guide is NOT final, so Layer 1 is a NEUTRAL PLACEHOLDER
-   (warm-tinted, not pure grey). When the brand lands, swap
-   Layer 1 primitives only — Layers 2 and 3 stay untouched.
+   Direction locked (Jul 2026): "DAWN GOLD" — warm cream paper,
+   deep oak-brown ink, burnished gold accent. The daylight sister
+   of the Faith Consciousness site (which is night-sky + gold).
+   Only Layer 1 changed from the placeholder; Layers 2 and 3
+   untouched. If the brand shifts again, swap Layer 1 only.
    ============================================================ */
 
 /* ---------------- Layer 1 · Primitives ---------------- */
 :root {
-  /* Warm-neutral scale — tinted, never pure grey  (PLACEHOLDER) */
-  --p-stone-50:  #faf9f7;
-  --p-stone-100: #f3f1ec;
-  --p-stone-200: #e7e2d9;
-  --p-stone-300: #d5cec1;
-  --p-stone-400: #b2aa98;
-  --p-stone-500: #8b8371;
-  --p-stone-600: #6c6555;
-  --p-stone-700: #504a3f;
-  --p-stone-800: #35322b;
-  --p-stone-900: #23211b;
-  --p-stone-950: #15140f;
+  /* Warm oak/cream scale — tinted, never pure grey */
+  --p-stone-50:  #faf7f0;
+  --p-stone-100: #f4efe3;
+  --p-stone-200: #e8e0cd;
+  --p-stone-300: #d6cab0;
+  --p-stone-400: #b3a488;
+  --p-stone-500: #8c7d63;
+  --p-stone-600: #6b5d48;
+  --p-stone-700: #4f4536;
+  --p-stone-800: #362f26;
+  --p-stone-900: #241f19;
+  --p-stone-950: #161310;
 
-  /* Accent — muted sage/gold  (PLACEHOLDER, swap for brand) */
-  --p-accent-100: #e8ede3;
-  --p-accent-300: #baccac;
-  --p-accent-500: #7f9b6c;
-  --p-accent-600: #617e4d;   /* passes AA on white */
-  --p-accent-700: #4b6440;
-  --p-accent-900: #2b3925;
+  /* Accent — burnished gold. Contrast checked (WCAG AA):
+     -600 on stone-50 = 4.62:1 (link text), white on -600 = 4.94:1
+     (button text), -500 on stone-50 = 3.38:1 (focus ring, ≥3:1),
+     -300 on stone-950 = 10.4:1 (dark-mode primary). */
+  --p-accent-100: #f3e8cf;
+  --p-accent-300: #ddbf7e;
+  --p-accent-500: #ab7f2b;
+  --p-accent-600: #8f6a1e;
+  --p-accent-700: #6f5217;
+  --p-accent-900: #3d2d0c;
 
   /* Absolutes + state hues */
   --p-white:     #ffffff;
@@ -41,9 +46,10 @@
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
 
-  /* Type families */
-  --p-font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --p-font-sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Type families — self-hosted subsets (css/fonts.css), the same
+     pairing as the Faith Consciousness site: one body of work. */
+  --p-font-serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --p-font-sans:  "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Type scale — fluid via clamp() */
   --p-text-xs:   0.78rem;
@@ -82,10 +88,10 @@
   --p-radius-lg:   0.9rem;
   --p-radius-full: 999px;
 
-  /* Shadows — soft, warm-tinted */
-  --p-shadow-sm: 0 1px 2px rgba(21,20,15,0.06);
-  --p-shadow-md: 0 4px 16px rgba(21,20,15,0.08);
-  --p-shadow-lg: 0 18px 48px rgba(21,20,15,0.12);
+  /* Shadows — soft, warm-tinted (rgb of stone-950) */
+  --p-shadow-sm: 0 1px 2px rgba(22,19,16,0.06);
+  --p-shadow-md: 0 4px 16px rgba(22,19,16,0.08);
+  --p-shadow-lg: 0 18px 48px rgba(22,19,16,0.12);
 
   /* Layout + motion */
   --p-container: 72rem;

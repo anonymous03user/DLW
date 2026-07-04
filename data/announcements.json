@@ -1,0 +1,17 @@
+{
+  "_note": "A short announcement bar at the top of the home page. Only entries with 'active': true are shown (the first active one wins). Set 'active' to false to hide it without deleting it.",
+  "announcements": [
+    {
+      "text": "Registration is open for the Faith Consciousness Program at HeartLight Spiritual Center.",
+      "link_label": "See dates",
+      "url": "/retreats.html",
+      "active": true
+    },
+    {
+      "text": "Example of a hidden announcement. Flip 'active' to true to show it.",
+      "link_label": "Learn more",
+      "url": "/",
+      "active": false
+    }
+  ]
+}

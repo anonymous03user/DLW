@@ -1,0 +1,53 @@
+{
+  "_note": "Upcoming dates, shown on the Retreats & Intro Talks page and in the 'Upcoming' strip on the home page. Past dates disappear automatically; you never have to delete them. DEMO: the dates below are placeholders ('tentative': true), but the venues, titles, and prices are real. Replace with confirmed dates.",
+  "events": [
+    {
+      "title": "Faith Consciousness Program, Part 2",
+      "type": "Half-day retreat",
+      "date": "2026-08-15",
+      "time": "2:00 to 6:00 PM",
+      "venue": "HeartLight Spiritual Center",
+      "city": "Charlotte, NC",
+      "price": "$140",
+      "action": "Register",
+      "url": "/book-dr-leslie.html",
+      "tentative": true
+    },
+    {
+      "title": "Awaken the Formula (free intro talk)",
+      "type": "Intro talk",
+      "date": "2026-07-23",
+      "time": "6:30 to 8:00 PM",
+      "venue": "Ahlara International",
+      "city": "Mooresville, NC",
+      "price": "Free with RSVP, love offering welcomed",
+      "action": "RSVP",
+      "url": "/book-dr-leslie.html",
+      "tentative": true
+    },
+    {
+      "title": "Awaken the Formula (free intro talk)",
+      "type": "Intro talk",
+      "date": "2026-09-10",
+      "time": "6:30 to 8:00 PM",
+      "venue": "Soul Wellness",
+      "city": "Mooresville, NC",
+      "price": "Free with RSVP, love offering welcomed",
+      "action": "RSVP",
+      "url": "/book-dr-leslie.html",
+      "tentative": true
+    },
+    {
+      "title": "Faith Consciousness Program, Part 3",
+      "type": "Half-day retreat",
+      "date": "2026-10-17",
+      "time": "2:00 to 6:00 PM",
+      "venue": "HeartLight Spiritual Center",
+      "city": "Charlotte, NC",
+      "price": "$140",
+      "action": "Register",
+      "url": "/book-dr-leslie.html",
+      "tentative": true
+    }
+  ]
+}

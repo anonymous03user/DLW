@@ -1,0 +1,33 @@
+{
+  "_note": "These cards appear in the 'Ways to work together' section of the home page. Edit a title or summary and the site updates on the next deploy. 'order' controls the display order (1 shows first).",
+  "offerings": [
+    {
+      "title": "Speaking",
+      "summary": "Keynotes and inspirational talks for organizations, conferences, and gatherings, where scripture, science, and spirit meet.",
+      "url": "/speaking.html",
+      "cta": "Invite her to speak",
+      "order": 1
+    },
+    {
+      "title": "Healing Events & Health Fairs",
+      "summary": "Bring Dr. Leslie to your community wellness event, health fair, or center for an experience of energy work and teaching.",
+      "url": "/healing-events.html",
+      "cta": "Host an event",
+      "order": 2
+    },
+    {
+      "title": "Healing Sessions",
+      "summary": "One-on-one energy work and Spiritual Attunement sessions, offered in person in Charlotte or remotely.",
+      "url": "/sessions.html",
+      "cta": "Book a session",
+      "order": 3
+    },
+    {
+      "title": "Retreats & Intro Talks",
+      "summary": "The Faith Consciousness Program, a three-part retreat series, plus free Awaken the Formula introductory talks.",
+      "url": "/retreats.html",
+      "cta": "See dates & register",
+      "order": 4
+    }
+  ]
+}
