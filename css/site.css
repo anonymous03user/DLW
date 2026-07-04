@@ -362,6 +362,62 @@ body.nav-open { overflow: hidden; }
   font-size: var(--p-text-lg);
 }
 
+/* ---------------- Offer-page hero (shared by the 5 offering/booking pages) ---------------- */
+.offer-hero { padding-block: var(--p-space-9) var(--p-space-7); }
+.offer-hero h1 { max-width: 22ch; }
+.offer-hero__lede {
+  font-size: var(--p-text-lg);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-bottom: var(--p-space-6);
+}
+.offer-hero__actions { display: flex; gap: var(--p-space-4); flex-wrap: wrap; }
+
+/* ---------------- "To be confirmed" flag pill ----------------
+   For any fact the client still has to supply. Text stays muted
+   (AA at small sizes); the warning hue is border-only (decorative). */
+.flag {
+  display: inline-block;
+  font-size: var(--p-text-xs);
+  font-weight: var(--p-weight-medium);
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--p-radius-full);
+  padding: calc(var(--p-space-1) / 2) var(--p-space-3);
+  margin-left: var(--p-space-2);
+  vertical-align: middle;
+}
+
+/* ---------------- Demo-placeholder stub panel ----------------
+   Marks spots where a live integration (scheduler, checkout)
+   embeds at launch. Deliberately obvious: dashed, muted. */
+.stub {
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--card-radius);
+  padding: var(--card-pad);
+  text-align: center;
+  color: var(--color-text-muted);
+  background: transparent;
+}
+.stub--fill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--p-space-3);
+}
+.stub__label {
+  display: block;
+  font-size: var(--p-text-xs);
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--p-weight-semibold);
+  color: var(--color-text-subtle);
+  margin: 0 auto var(--p-space-2);
+}
+.stub p { margin: 0 auto; font-size: var(--p-text-sm); max-width: 48ch; }
+
 /* ---------------- Footer ---------------- */
 .site-footer {
   background: var(--footer-bg);

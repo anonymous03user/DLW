@@ -28,16 +28,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <style>
-    /* ---------- Speaking: hero ---------- */
-    .offer-hero { padding-block: var(--p-space-9) var(--p-space-7); }
-    .offer-hero h1 { max-width: 22ch; }
-    .offer-hero__lede {
-      font-size: var(--p-text-lg);
-      color: var(--color-text-muted);
-      max-width: 52ch;
-      margin-bottom: var(--p-space-6);
-    }
-    .offer-hero__actions { display: flex; gap: var(--p-space-4); flex-wrap: wrap; }
+    /* hero (.offer-hero) + .flag pill: shared, in css/site.css */
 
     /* ---------- Reach line ---------- */
     .reach {
@@ -55,7 +46,8 @@
     /* ---------- Topics ---------- */
     .topics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      /* four cards: 2x2 on desktop, single column on phones (no orphan row) */
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
       gap: var(--p-space-5);
     }
     .topic h3 { font-size: var(--p-text-xl); margin-bottom: var(--p-space-3); }
@@ -90,20 +82,7 @@
     @media (max-width: 700px) {
       .format-list li { grid-template-columns: 1fr; gap: var(--p-space-2); }
     }
-
-    .flag {
-      display: inline-block;
-      font-size: var(--p-text-xs);
-      font-weight: var(--p-weight-medium);
-      letter-spacing: var(--p-tracking-wide);
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      border: 1px solid var(--color-warning);
-      border-radius: var(--p-radius-full);
-      padding: calc(var(--p-space-1) / 2) var(--p-space-3);
-      margin-left: var(--p-space-2);
-      vertical-align: middle;
-    }
+    .formats__note { margin-top: var(--p-space-5); margin-bottom: 0; }
   </style>
 </head>
 <body>
@@ -147,7 +126,7 @@
     </section>
 
     <!-- ============ REACH ============ -->
-    <section class="reach" aria-label="Reach">
+    <section class="reach" aria-label="Media reach and audience">
       <div class="container">
         <p>
           Featured on Coast to Coast AM. Eight years broadcasting on WSIC,
@@ -233,7 +212,7 @@
             <p>Moderated conversations and fireside formats on faith, healing, and consciousness.</p>
           </li>
         </ul>
-        <p class="text-muted" style="margin-top: var(--p-space-5); margin-bottom: 0;">
+        <p class="text-muted formats__note">
           Formats, timing, and any experiential elements are tailored in a
           short conversation after your inquiry.
         </p>
