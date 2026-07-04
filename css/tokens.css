@@ -28,20 +28,25 @@
   --p-stone-900: #241f19;
   --p-stone-950: #161310;
 
-  /* Accent — burnished gold. Contrast checked (WCAG AA):
-     -600 on stone-50 = 4.62:1 (link text), white on -600 = 4.94:1
-     (button text), -500 on stone-50 = 3.38:1 (focus ring, ≥3:1),
+  /* Accent — burnished gold. Contrast checked (WCAG AA).
+     -600 is link/button gold and must clear 4.5:1 on EVERY light
+     surface it sits on, including the tinted ones: 4.77:1 on
+     accent-100 (the gold-wash chip), 5.06:1 on stone-100, 5.42:1
+     on stone-50, and white text on it = 5.8:1. (Lighthouse caught
+     the first draft failing on the tinted surfaces at 4.06:1.)
+     -500 on stone-50 = 3.38:1 (focus ring, ≥3:1 UI minimum).
      -300 on stone-950 = 10.4:1 (dark-mode primary). */
   --p-accent-100: #f3e8cf;
   --p-accent-300: #ddbf7e;
   --p-accent-500: #ab7f2b;
-  --p-accent-600: #8f6a1e;
+  --p-accent-600: #816017;
   --p-accent-700: #6f5217;
   --p-accent-900: #3d2d0c;
 
   /* Absolutes + state hues */
   --p-white:     #ffffff;
   --p-black:     #000000;
+  --p-red-300:   #e08d78;   /* danger on dark surfaces: 6.4:1 on stone-900 */
   --p-red-600:   #a63a29;
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
@@ -110,6 +115,10 @@
   --color-surface-alt:   var(--p-stone-100);
   --color-border:        var(--p-stone-200);
   --color-border-strong: var(--p-stone-300);
+  /* Form-control boundary: must clear 3:1 against the surface it sits
+     on (WCAG 1.4.11). stone-500 clears it on BOTH light and dark cards
+     (4.02:1 on white, 4.07:1 on dark stone-900), so no dark override. */
+  --color-border-input:  var(--p-stone-500);
 
   /* Text */
   --color-text:           var(--p-stone-900);
@@ -158,6 +167,8 @@
     --color-primary-hover:  var(--p-accent-100);
     --color-primary-soft:   var(--p-accent-900);
     --color-focus-ring:     var(--p-accent-300);
+
+    --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
   }
 }
 [data-theme="dark"] {
@@ -176,6 +187,8 @@
   --color-primary-hover:  var(--p-accent-100);
   --color-primary-soft:   var(--p-accent-900);
   --color-focus-ring:     var(--p-accent-300);
+
+  --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
 }
 
 /* ---------------- Layer 3 · Component ---------------- */

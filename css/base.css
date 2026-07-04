@@ -74,6 +74,8 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: 2.75rem; /* 44px touch-target floor (WCAG) */
   gap: var(--p-space-2);
   padding: var(--button-pad-y) var(--button-pad-x);
   background: var(--button-bg);

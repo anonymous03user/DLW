@@ -64,14 +64,14 @@
       width: 100%;
       font: inherit;
       color: var(--color-text);
-      background: var(--color-bg);
-      border: 1px solid var(--color-border-strong);
+      background: var(--color-surface-alt); /* recessed fill: reads as a field */
+      border: 1px solid var(--color-border-input); /* clears 3:1 on the card */
       border-radius: var(--p-radius-md);
       padding: var(--p-space-3) var(--p-space-4);
       transition: border-color var(--p-dur-fast) var(--p-ease);
     }
     .field input:hover, .field select:hover, .field textarea:hover {
-      border-color: var(--color-text-subtle);
+      border-color: var(--color-text);
     }
     .field input:user-invalid, .field textarea:user-invalid, .field select:user-invalid {
       border-color: var(--color-danger);
@@ -116,13 +116,13 @@
     }
 
     /* ---------- Aside ---------- */
-    .direct h2 { font-size: var(--p-text-xl); }
+    .direct h3 { font-size: var(--p-text-xl); }
     .direct ul { list-style: none; margin: 0; padding: 0; }
     .direct li { margin-bottom: var(--p-space-3); color: var(--color-text-muted); }
     .direct li strong { color: var(--color-text); font-weight: var(--p-weight-medium); }
     .direct .card + .card { margin-top: var(--p-space-5); }
     .direct .card p { font-size: var(--p-text-sm); color: var(--color-text-muted); margin: 0; }
-    .direct .card h2 { margin-bottom: var(--p-space-3); }
+    .direct .card h3 { margin-bottom: var(--p-space-3); }
 
     /* ---------- Press strip ---------- */
     .press {
@@ -297,7 +297,7 @@
 
           <aside class="direct" aria-label="Direct contact">
             <div class="card">
-              <h2>Prefer to reach out directly?</h2>
+              <h3>Prefer to reach out directly?</h3>
               <ul>
                 <li><strong>Email:</strong> <a data-site-href="email" href="mailto:DrLeslieWells@gmail.com">DrLeslieWells@gmail.com</a></li>
                 <li><strong>Text:</strong> <span data-site="phone_text_line">Text 743-900-5574</span></li>
@@ -305,14 +305,14 @@
               </ul>
             </div>
             <div class="card">
-              <h2>Hear her first</h2>
+              <h3>Hear her first</h3>
               <p data-site="radio_line">
                 Faith Consciousness Radio with Dr. Leslie airs Thursdays,
                 3 to 4 PM, on WSIC (100.7 FM / 105.9 FM / 1400 AM).
               </p>
             </div>
             <div class="card">
-              <h2>From the teaching site?</h2>
+              <h3>From the teaching site?</h3>
               <p>
                 Book signing and appearance requests for
                 <a href="https://faithconsciousness.com">Faith Consciousness</a>

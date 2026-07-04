@@ -79,7 +79,9 @@
               border-color var(--p-dur-fast) var(--p-ease);
 }
 .site-header__nav a:not(.btn):hover { color: var(--color-text); }
-.site-header__nav a[aria-current="page"] {
+/* :not(.btn): the CTA button must keep its own text color even when
+   it points at the current page (nav.js sets aria-current on it too) */
+.site-header__nav a[aria-current="page"]:not(.btn) {
   color: var(--color-text);
   border-bottom-color: var(--color-primary);
 }
@@ -136,7 +138,7 @@ body.nav-open { overflow: hidden; }
     padding-block: var(--p-space-3);
     border-bottom: 1px solid var(--color-border);
   }
-  .site-header__nav a[aria-current="page"] { border-bottom-color: var(--color-primary); }
+  .site-header__nav a[aria-current="page"]:not(.btn) { border-bottom-color: var(--color-primary); }
   .site-header__nav .btn { margin-top: var(--p-space-4); justify-content: center; }
 }
 
