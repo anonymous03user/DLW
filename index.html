@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>document.documentElement.classList.add("js")</script>
 
   <!-- SEO -->
   <title>Dr. Leslie Wells | Speaker &amp; Energy-Medicine Facilitator | Charlotte, NC</title>
@@ -18,7 +19,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts: preload the two critical subsets, then styles -->
-  <link rel="preload" href="/assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/bricolage-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/tokens.css" />
@@ -48,28 +49,37 @@
 
   <style>
     /* ---------- Home: hero ---------- */
-    .hero { padding-block: var(--p-space-9) var(--p-space-8); }
+    .hero { padding-block: var(--p-space-10) var(--p-space-9); }
     .hero__title {
-      max-width: 24ch;
-      margin-bottom: var(--p-space-5);
+      font-family: var(--font-heading);
+      font-weight: var(--p-weight-semibold);
+      font-variation-settings: "opsz" 96, "wght" 600;
+      font-size: clamp(2.7rem, 1.4rem + 5.6vw, 5.25rem);
+      line-height: 1.0;
+      letter-spacing: -0.032em;
+      max-width: 15ch;
+      margin-bottom: var(--p-space-6);
     }
+    .hero__title .hl-accent { letter-spacing: -0.01em; }
     .hero__lede {
       font-size: var(--p-text-lg);
       color: var(--color-text-muted);
-      max-width: 52ch;
+      max-width: 48ch;
       margin-bottom: var(--p-space-5);
     }
     .hero__testimony {
-      font-family: var(--font-heading);
+      font-family: var(--font-accent);
       font-style: italic;
+      font-variation-settings: "opsz" 40, "SOFT" 60;
       font-size: var(--p-text-lg);
+      line-height: var(--p-leading-snug);
       color: var(--color-text);
       border-left: 2px solid var(--color-primary);
       padding-left: var(--p-space-5);
-      max-width: 52ch;
+      max-width: 50ch;
       margin-bottom: var(--p-space-6);
     }
-    .hero__testimony a { color: var(--color-primary); }
+    .hero__testimony a { color: var(--color-primary); font-style: normal; }
     .hero__actions {
       display: flex;
       gap: var(--p-space-4);
@@ -182,20 +192,20 @@
         <div class="hero__announce">
           <div class="announce" data-announcement hidden></div>
         </div>
-        <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
-        <h1 class="hero__title">Where faith meets frequency.</h1>
-        <p class="hero__lede">
+        <p class="eyebrow reveal" style="--i:0"><span class="star" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
+        <h1 class="hero__title reveal" style="--i:1">Where faith meets <span class="hl-accent">frequency</span>.</h1>
+        <p class="hero__lede reveal" style="--i:2">
           Speaker, energy-medicine facilitator, radio host, and founder of
           Faith Consciousness. For more than two decades, Dr. Leslie has helped
           people move out of suffering and into the creative power of their
           own faith.
         </p>
-        <p class="hero__testimony">
+        <p class="hero__testimony reveal" style="--i:3">
           In 2025 she faced a breast cancer diagnosis and, by her own account,
           experienced a spontaneous healing by living the very principles she
           teaches. <a href="/story.html">Her story, in her words</a>.
         </p>
-        <div class="hero__actions">
+        <div class="hero__actions reveal" style="--i:4">
           <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
           <a class="btn btn--ghost btn--lg" href="https://faithconsciousness.com">Explore the teaching</a>
         </div>
@@ -218,7 +228,7 @@
     <!-- ============ OFFERINGS: rendered from data/offerings.json ============ -->
     <section class="section" aria-labelledby="offerings-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Work with her</p>
           <h2 id="offerings-title">Ways to work together</h2>
           <p class="section-head__lede">
@@ -226,7 +236,7 @@
             every path below begins at the same door.
           </p>
         </div>
-        <div class="offers-grid" data-offerings></div>
+        <div class="offers-grid reveal" style="--i:1" data-offerings></div>
         <noscript>
           <ul>
             <li><a href="/speaking.html">Speaking</a></li>
@@ -241,10 +251,10 @@
     <!-- ============ STORY BAND ============ -->
     <section class="section story-band" aria-labelledby="story-title">
       <div class="container">
-        <div class="story-band__media">
+        <div class="story-band__media reveal">
           <img src="/assets/images/horizon-band.jpg" alt="A warm dawn horizon over still water" width="1600" height="900" loading="lazy" />
         </div>
-        <div class="story-band__card">
+        <div class="story-band__card reveal" style="--i:1">
           <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Her story</p>
           <h2 id="story-title">From the spine to the spirit</h2>
           <p>
@@ -261,7 +271,7 @@
     <!-- ============ UPCOMING: rendered from data/events.json ============ -->
     <section class="section upcoming" aria-labelledby="upcoming-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div class="section-head__row">
             <div>
               <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>On the calendar</p>
@@ -271,7 +281,7 @@
             <p class="section-head__action"><a href="/retreats.html">All dates &amp; registration &rarr;</a></p>
           </div>
         </div>
-        <ol class="event-list" data-events data-limit="3"></ol>
+        <ol class="event-list reveal" data-events data-limit="3"></ol>
         <noscript><p>See <a href="/retreats.html">Retreats &amp; Intro Talks</a> for current dates.</p></noscript>
       </div>
     </section>
@@ -279,11 +289,11 @@
     <!-- ============ THE TEACHER: rendered from data/bio.json ============ -->
     <section class="section teacher" aria-labelledby="teacher-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>The teacher</p>
           <h2 id="teacher-title">Meet Dr. Leslie</h2>
         </div>
-        <div class="bio-card" data-bio></div>
+        <div class="bio-card reveal" style="--i:1" data-bio></div>
         <noscript><p><a href="/story.html">Read about Dr. Leslie Wells</a>.</p></noscript>
       </div>
     </section>
@@ -291,7 +301,7 @@
     <!-- ============ FINAL CTA ============ -->
     <section class="section" aria-labelledby="cta-title">
       <div class="container">
-        <div class="cta-band" data-theme="dark">
+        <div class="cta-band reveal" data-theme="dark">
           <h2 id="cta-title">Bring Dr. Leslie to your community</h2>
           <p class="cta-band__lede">
             Keynotes, healing events, health fairs, one-on-one sessions, and
@@ -354,6 +364,7 @@
   </footer>
 
   <script src="/js/nav.js" defer></script>
+  <script src="/js/reveal.js" defer></script>
   <script src="/js/render.js" defer></script>
 </body>
 </html>

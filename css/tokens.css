@@ -6,55 +6,64 @@
    Layer 2  SEMANTIC    role-based. BUILD AGAINST THESE.
    Layer 3  COMPONENT   per-component, derived from semantic.
 
-   Direction locked (Jul 2026): "DAWN GOLD" — warm cream paper,
-   deep oak-brown ink, burnished gold accent. The daylight sister
-   of the Faith Consciousness site (which is night-sky + gold).
-   Only Layer 1 changed from the placeholder; Layers 2 and 3
-   untouched. If the brand shifts again, swap Layer 1 only.
+   Direction locked (Jul 2026): "FREQUENCY & FAITH" — warm
+   editorial modernism. A humanist grotesque (Bricolage) leads
+   and carries the authority; Fraunces (soft-terminal serif) is
+   the rationed "soul" accent for the signature line and
+   scripture; body stays Hanken. Accent is contemporary-ceramic
+   TERRACOTTA, not spa-gold. Neutrals are warm oak/clay.
+   Only Layer 1 changed here, EXCEPT two documented type-role
+   lines in Layer 2 (heading -> display, + a new --font-accent):
+   a grotesque-led direction re-maps the heading role, which a
+   pure value-swap cannot express. Component layer untouched.
    ============================================================ */
 
 /* ---------------- Layer 1 · Primitives ---------------- */
 :root {
-  /* Warm oak/cream scale — tinted, never pure grey */
-  --p-stone-50:  #faf7f0;
-  --p-stone-100: #f4efe3;
-  --p-stone-200: #e8e0cd;
-  --p-stone-300: #d6cab0;
-  --p-stone-400: #b3a488;
-  --p-stone-500: #8c7d63;
-  --p-stone-600: #6b5d48;
-  --p-stone-700: #4f4536;
-  --p-stone-800: #362f26;
-  --p-stone-900: #241f19;
-  --p-stone-950: #161310;
+  /* Warm oak/clay scale — tinted, never pure grey. Doubles as the
+     dark ramp (100 = dark-mode text, 900 = ink & dark surface,
+     950 = dark bg). AA verified: ink 15.2:1 light / 14.6:1 dark. */
+  --p-stone-50:  #f7f3ec;
+  --p-stone-100: #f2ece0;
+  --p-stone-200: #e5dcc9;
+  --p-stone-300: #d2c6ae;
+  --p-stone-400: #a89a86;
+  --p-stone-500: #7a6e5a;
+  --p-stone-600: #5c5347;
+  --p-stone-700: #423a2f;
+  --p-stone-800: #2e2820;
+  --p-stone-900: #211d17;
+  --p-stone-950: #1b1712;
 
-  /* Accent — burnished gold. Contrast checked (WCAG AA).
-     -600 is link/button gold and must clear 4.5:1 on EVERY light
-     surface it sits on, including the tinted ones: 4.77:1 on
-     accent-100 (the gold-wash chip), 5.06:1 on stone-100, 5.42:1
-     on stone-50, and white text on it = 5.8:1. (Lighthouse caught
-     the first draft failing on the tinted surfaces at 4.06:1.)
-     -500 on stone-50 = 3.38:1 (focus ring, ≥3:1 UI minimum).
-     -300 on stone-950 = 10.4:1 (dark-mode primary). */
-  --p-accent-100: #f3e8cf;
-  --p-accent-300: #ddbf7e;
-  --p-accent-500: #ab7f2b;
-  --p-accent-600: #816017;
-  --p-accent-700: #6f5217;
-  --p-accent-900: #3d2d0c;
+  /* Accent — Kiln Terracotta. Contrast checked (WCAG AA).
+     -600 is link/button terracotta, clears 4.5:1 on every light
+     ground: 4.86:1 on bg-50, 5.28:1 on surface (white), 4.57:1 on
+     the surface-alt band (-100); warm-white text on it = 5.28:1.
+     -500 focus ring = 3.9:1 on bg (>=3:1 UI min).
+     -300 (Ember) is the dark-mode accent = 5.28:1 on stone-950. */
+  --p-accent-100: #f6ece2;   /* soft wash: terracotta link clears 4.61:1 on it */
+  --p-accent-300: #c47a48;
+  --p-accent-500: #b0682f;
+  --p-accent-600: #9a5b2e;
+  --p-accent-700: #7e4a24;
+  --p-accent-900: #321c10;   /* dark soft wash: ember link clears 4.75:1 on it */
 
-  /* Absolutes + state hues */
-  --p-white:     #ffffff;
+  /* Absolutes + state hues. "white" is a warm paper-white (never
+     pure #fff — tinted-neutral discipline); it is the light card
+     surface and the text on the terracotta button. */
+  --p-white:     #fffdf8;
   --p-black:     #000000;
-  --p-red-300:   #e08d78;   /* danger on dark surfaces: 6.4:1 on stone-900 */
+  --p-red-300:   #e08d78;   /* danger on dark surfaces */
   --p-red-600:   #a63a29;
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
 
-  /* Type families — self-hosted subsets (css/fonts.css), the same
-     pairing as the Faith Consciousness site: one body of work. */
-  --p-font-serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --p-font-sans:  "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Type families — self-hosted VARIABLE fonts (css/fonts.css).
+     display = the grotesque that leads; serif = Fraunces, the
+     rationed soul accent; sans = Hanken, the body workhorse. */
+  --p-font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --p-font-serif:   "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --p-font-sans:    "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Type scale — fluid via clamp() */
   --p-text-xs:   0.78rem;
@@ -71,9 +80,11 @@
   --p-leading-normal: 1.6;
   --p-tracking-tight: -0.02em;
   --p-tracking-wide:   0.06em;
+  --p-weight-light:    300;
   --p-weight-normal:   400;
   --p-weight-medium:   500;
   --p-weight-semibold: 600;
+  --p-weight-bold:     700;
 
   /* Spacing scale (rem) */
   --p-space-1: 0.25rem;
@@ -93,17 +104,21 @@
   --p-radius-lg:   0.9rem;
   --p-radius-full: 999px;
 
-  /* Shadows — soft, warm-tinted (rgb of stone-950) */
-  --p-shadow-sm: 0 1px 2px rgba(22,19,16,0.06);
-  --p-shadow-md: 0 4px 16px rgba(22,19,16,0.08);
-  --p-shadow-lg: 0 18px 48px rgba(22,19,16,0.12);
+  /* Shadows — soft, warm-tinted (rgb of ink #211d17). Lower
+     opacity + higher blur than default = the "expensive" read. */
+  --p-shadow-sm: 0 1px 2px rgba(33,29,23,0.05);
+  --p-shadow-md: 0 6px 22px rgba(33,29,23,0.07);
+  --p-shadow-lg: 0 24px 60px rgba(33,29,23,0.10);
 
-  /* Layout + motion */
+  /* Layout + motion. --p-ease for micro-interactions (hover),
+     --p-ease-entrance for the poised, staggered page-load. */
   --p-container: 72rem;
-  --p-measure:   66ch;
-  --p-ease:      cubic-bezier(0.22, 1, 0.36, 1);
-  --p-dur-fast:  140ms;
-  --p-dur-med:   260ms;
+  --p-measure:   62ch;
+  --p-ease:          cubic-bezier(0.22, 1, 0.36, 1);
+  --p-ease-entrance: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --p-dur-fast:  160ms;
+  --p-dur-med:   300ms;
+  --p-dur-slow:  560ms;
 }
 
 /* ---------------- Layer 2 · Semantic ---------------- */
@@ -139,9 +154,16 @@
   --color-success: var(--p-green-600);
   --color-warning: var(--p-amber-600);
 
-  /* Typography roles */
-  --font-heading: var(--p-font-serif);
+  /* Typography roles.
+     NOTE (Frequency & Faith): this is the ONE place the art-direction
+     pass touches Layer 2. A grotesque-led direction re-maps the
+     heading role from serif to display and adds a dedicated serif
+     "accent" role (Fraunces) for the signature line + scripture.
+     A pure Layer-1 value-swap cannot express a role change, so these
+     three lines are the deliberate, documented exception. */
+  --font-heading: var(--p-font-display);
   --font-body:    var(--p-font-sans);
+  --font-accent:  var(--p-font-serif);
 
   /* Elevation */
   --shadow-card: var(--p-shadow-md);

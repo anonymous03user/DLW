@@ -1,54 +1,43 @@
 /* ============================================================
-   Self-hosted fonts — subset woff2, same pairing as the
-   Faith Consciousness site (shared design system).
-   Cormorant Garamond = headings (--p-font-serif)
-   Hanken Grotesk    = body     (--p-font-sans)
-   font-display: swap keeps first paint fast (LCP-safe);
-   the two critical files are preloaded in each page head.
+   Self-hosted VARIABLE fonts — direction "Frequency & Faith".
+   Subset (Latin + typographic punctuation) from the source
+   GitHub variable TTFs and converted to woff2 with fonttools,
+   so the real axes survive (the Google /css2 API would flatten
+   them). Axes kept:
+     Bricolage Grotesque  opsz, wght 200-800, wdth 75-100
+     Fraunces (roman+ital) opsz, wght 100-900, SOFT 0-100, WONK 0-1
+     Hanken Grotesk        static 400/500/600 (body; unchanged)
+   font-optical-sizing: auto (default) drives opsz from font-size;
+   SOFT/WONK are set per-use via font-variation-settings.
    ============================================================ */
 
+/* ---- Bricolage Grotesque — display / headings ---- */
 @font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-400.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/bricolage-var.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Fraunces — the serif "soul" accent + scripture ---- */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/fraunces-var.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-italic-400.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Fraunces";
+  src: url("/assets/fonts/fraunces-italic-var.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-italic-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/assets/fonts/cormorant-italic-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
+
+/* ---- Hanken Grotesk — body + labels (static subsets, kept) ---- */
 @font-face {
   font-family: "Hanken Grotesk";
   src: url("/assets/fonts/hanken-400.woff2") format("woff2");

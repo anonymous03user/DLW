@@ -68,8 +68,10 @@
       return (a.order || 0) - (b.order || 0);
     });
     items.forEach(function (o) {
-      var card = el("a", "offer-card");
-      card.href = o.url || "#";
+      /* a real link when there's a destination; a plain card otherwise
+         (no focusable href="#" dead-ends for keyboard users) */
+      var card = el(o.url ? "a" : "div", "offer-card");
+      if (o.url) card.href = o.url;
       card.appendChild(el("h3", "offer-card__title", o.title));
       card.appendChild(el("p", "offer-card__summary", o.summary));
       card.appendChild(el("span", "offer-card__cta", (o.cta || "Learn more") + " →"));
@@ -110,9 +112,11 @@
           [e.type, e.venue, e.city].filter(Boolean).join(" · ")));
         if (e.price) what.appendChild(el("p", "event-row__price", e.price));
         var act = el("div", "event-row__action");
-        var btn = el("a", "btn btn--ghost", e.action || "Details");
-        btn.href = e.url || "#";
-        act.appendChild(btn);
+        if (e.url) {
+          var btn = el("a", "btn btn--ghost", e.action || "Details");
+          btn.href = e.url;
+          act.appendChild(btn);
+        }
         row.appendChild(when); row.appendChild(what); row.appendChild(act);
         spot.appendChild(row);
       });

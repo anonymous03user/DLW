@@ -12,9 +12,17 @@ be able to read this and know exactly where things stand.
 - [x] Step 2 — content model in `/data`: offerings, events, announcements,
       bio, site. Renderers in `js/render.js` (data-* hooks, DOM-built, no
       innerHTML), nav behavior in `js/nav.js`.
-- [x] Step 3 — direction locked: **Dawn Gold** (cream paper, oak ink,
-      burnished gold, Cormorant Garamond + Hanken Grotesk; daylight sister of
-      the Faith Consciousness site). Full 7-page core. Monogram, no portrait.
+- [x] Step 3 — first direction: Dawn Gold (cream/oak/gold, Cormorant + Hanken).
+      SUPERSEDED by the art-direction pass below.
+- [x] **Art-direction pass — direction re-locked: "FREQUENCY & FAITH"**
+      (warm editorial modernism). Bricolage Grotesque (variable) leads;
+      Fraunces (variable, SOFT/WONK) is the rationed serif soul accent;
+      Hanken body. Accent = Kiln Terracotta, not gold. Signature: the home
+      hero "frequency" in Fraunces italic terracotta on an all-grotesque line.
+      Home page reworked + design-reviewer verdict **Ship**; Lighthouse
+      100 a11y/BP/SEO; LCP 160ms, CLS 0.00. Remaining 6 pages: palette/fonts
+      re-skinned by the token swap, per-page craft (hero signatures, reveals,
+      whitespace) still PENDING.
 - [x] Step 4 — all seven pages built: index, story, speaking, healing-events,
       sessions, retreats, book-dr-leslie. Plus 404, sitemap.xml, robots.txt.
 - [x] Step 5 — editable feed verified end-to-end in the browser: edited
@@ -75,6 +83,40 @@ be able to read this and know exactly where things stand.
 - **Never quote first-person words she didn't say.** The testimony started
   as an invented first-person blockquote; converted to reported speech with
   only her attributed phrases. Verbatim telling is a client-supplied fact.
+
+## Art-direction (Frequency & Faith) — decisions
+
+- Layer-1 only, with ONE documented Layer-2 exception: a grotesque-led
+  direction re-maps the heading role (--font-heading → display) and adds a new
+  --font-accent → Fraunces. A pure value-swap can't express a role change;
+  component layer untouched. Flagged inline in tokens.css.
+- Fonts self-hosted VARIABLE woff2, subset from the GitHub source TTFs with
+  fonttools (pip-installed this session) so the real axes survive — the Google
+  /css2 API would flatten SOFT/WONK/opsz/wdth to a plain instance. Bricolage +
+  Hanken preload; Fraunces (roman + italic) is the lazy accent, not preloaded.
+- Palette AA re-verified numerically before painting; Lighthouse then caught
+  two soft-wash squeakers (terracotta link on accent-100 = 4.27, ember on
+  accent-900 dark = 4.42). Fixed by lightening accent-100 and deepening
+  accent-900. Ratios documented in tokens.css.
+- Signature discipline ("spend boldness once"): Fraunces appears ONLY in the
+  hero "frequency" word, the wordmark/footer brand, and pull-quotes/testimony.
+  Terracotta only on the star, primary CTA, links, and the accent word.
+- Motion: css/site.css `.reveal`/`.in` + js/reveal.js (IntersectionObserver,
+  per-element --i stagger). `html.js` set by a one-line inline head script so
+  nothing flashes; no-JS and reduced-motion both show everything at rest.
+
+## Lessons (art-direction pass, one per note)
+
+- **A grotesque-led rebrand can't be a pure Layer-1 swap.** When the heading
+  role itself changes families, you must repoint the semantic role; keep it to
+  one documented line and leave the component layer alone.
+- **Self-host variable fonts from the GitHub source, never /css2.** The Google
+  CSS API silently serves single-instance files; the whole signature (SOFT/WONK
+  soft terminals) collapses to a plain italic. `python3 -m fontTools.subset
+  --flavor=woff2` keeps the axes; confirm with fvar afterwards.
+- **Re-run Lighthouse after any palette change.** Numeric pre-checks miss the
+  accent-on-soft-wash pairings; both squeakers were on the announcement chip
+  in each mode, invisible until audited.
 
 ## Open questions
 

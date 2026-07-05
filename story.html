@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>document.documentElement.classList.add("js")</script>
 
   <!-- SEO -->
   <title>Her Story | Dr. Leslie Wells</title>
@@ -18,7 +19,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts: preload the two critical subsets, then styles -->
-  <link rel="preload" href="/assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/bricolage-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/tokens.css" />
@@ -109,9 +110,11 @@
     /* ---------- The testimony ---------- */
     .testimony { background: var(--color-surface-alt); }
     .testimony__quote {
-      font-family: var(--font-heading);
+      font-family: var(--font-accent);
       font-style: italic;
+      font-variation-settings: "opsz" 40, "SOFT" 60;
       font-size: var(--p-text-xl);
+      line-height: var(--p-leading-snug);
       color: var(--color-text);
       border-left: 2px solid var(--color-primary);
       padding-left: var(--p-space-5);
@@ -399,6 +402,7 @@
   </footer>
 
   <script src="/js/nav.js" defer></script>
+  <script src="/js/reveal.js" defer></script>
   <script src="/js/render.js" defer></script>
 </body>
 </html>
