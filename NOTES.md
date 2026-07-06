@@ -23,6 +23,17 @@ be able to read this and know exactly where things stand.
       100 a11y/BP/SEO; LCP 160ms, CLS 0.00. Remaining 6 pages: palette/fonts
       re-skinned by the token swap, per-page craft (hero signatures, reveals,
       whitespace) still PENDING.
+- [x] **Palette swap (client-directed): PLUM / SAGE / near-blacks / gold.**
+      Layer-1 only + one new narrow --color-signature token. Accent terracotta
+      → plum #8E4162; neutrals oak/clay → sage-tinted (stone-200 = the literal
+      sage #DBDFAC, used as border only — it fails AA as any foreground);
+      near-blacks split by role (#222725 = light ink AND dark card surface;
+      #0D1321 = dark canvas only); gold = antique brass #755918/#D9B34E,
+      reserved for the .hl-accent signature word ALONE. Two files touched
+      (tokens.css + one line in site.css). Design-reviewer: **Ship**;
+      Lighthouse 100 a11y/BP/SEO on home + speaking. Fonts/layout/motion
+      unchanged. The 6 non-home pages remain re-skinned but per-page-craft
+      PENDING (now in plum instead of terracotta).
 - [x] Step 4 — all seven pages built: index, story, speaking, healing-events,
       sessions, retreats, book-dr-leslie. Plus 404, sitemap.xml, robots.txt.
 - [x] Step 5 — editable feed verified end-to-end in the browser: edited

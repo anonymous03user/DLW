@@ -10,50 +10,80 @@
    editorial modernism. A humanist grotesque (Bricolage) leads
    and carries the authority; Fraunces (soft-terminal serif) is
    the rationed "soul" accent for the signature line and
-   scripture; body stays Hanken. Accent is contemporary-ceramic
-   TERRACOTTA, not spa-gold. Neutrals are warm oak/clay.
-   Only Layer 1 changed here, EXCEPT two documented type-role
-   lines in Layer 2 (heading -> display, + a new --font-accent):
-   a grotesque-led direction re-maps the heading role, which a
-   pure value-swap cannot express. Component layer untouched.
+   scripture; body stays Hanken. Only Layer 1 changed here,
+   EXCEPT two documented type-role lines in Layer 2
+   (heading -> display, + a new --font-accent): a grotesque-led
+   direction re-maps the heading role, which a pure value-swap
+   cannot express. Component layer untouched.
+
+   Palette refresh (Jul 2026): client-directed color swap on top
+   of the direction above. Accent moves from terracotta to PLUM;
+   neutrals move from warm oak/clay to a sage-tinted scale; a new
+   narrow --color-signature (antique-brass gold) role is added
+   for the ONE existing signature-word consumer only (.hl-accent
+   in css/site.css) — same "earns its own token" precedent as
+   --font-accent. Sage itself is never used as text/button color
+   (it fails AA outright as a light-mode foreground, 1.38:1 on
+   white) — it lives only in the neutral ramp, at the same
+   barely-there hairline subtlety the ramp already had.
    ============================================================ */
 
 /* ---------------- Layer 1 · Primitives ---------------- */
 :root {
-  /* Warm oak/clay scale — tinted, never pure grey. Doubles as the
+  /* Sage-tinted scale — tinted, never pure grey. Doubles as the
      dark ramp (100 = dark-mode text, 900 = ink & dark surface,
-     950 = dark bg). AA verified: ink 15.2:1 light / 14.6:1 dark. */
-  --p-stone-50:  #f7f3ec;
-  --p-stone-100: #f2ece0;
-  --p-stone-200: #e5dcc9;
-  --p-stone-300: #d2c6ae;
-  --p-stone-400: #a89a86;
-  --p-stone-500: #7a6e5a;
-  --p-stone-600: #5c5347;
-  --p-stone-700: #423a2f;
-  --p-stone-800: #2e2820;
-  --p-stone-900: #211d17;
-  --p-stone-950: #1b1712;
+     950 = dark bg). AA verified: ink 13.9:1 light / 16.0:1 dark.
+     -200 is the client's literal sage hex (#DBDFAC), used as the
+     hairline border color; other steps are sage-cast tints
+     interpolated around it. -900/-950 are the client's two
+     near-black anchors: -900 (warm) is both the light-mode ink
+     AND the dark-mode card surface; -950 (cool navy) is the
+     dark-mode canvas only — they're too close in luminance
+     (1.22:1) to be two steps of one ramp, but read fine as two
+     distinct roles (matches the prior palette's own 1.06:1
+     bg/surface gap, so this is not a new subtlety). */
+  --p-stone-50:  #F5F6ED;
+  --p-stone-100: #EEF0DF;
+  --p-stone-200: #DBDFAC;
+  --p-stone-300: #C3C8A0;
+  --p-stone-400: #9BA184;
+  --p-stone-500: #6E7360;
+  --p-stone-600: #525645;
+  --p-stone-700: #3A3D30;
+  --p-stone-800: #2A2D24;
+  --p-stone-900: #222725;
+  --p-stone-950: #0D1321;
 
-  /* Accent — Kiln Terracotta. Contrast checked (WCAG AA).
-     -600 is link/button terracotta, clears 4.5:1 on every light
-     ground: 4.86:1 on bg-50, 5.28:1 on surface (white), 4.57:1 on
-     the surface-alt band (-100); warm-white text on it = 5.28:1.
-     -500 focus ring = 3.9:1 on bg (>=3:1 UI min).
-     -300 (Ember) is the dark-mode accent = 5.28:1 on stone-950. */
-  --p-accent-100: #f6ece2;   /* soft wash: terracotta link clears 4.61:1 on it */
-  --p-accent-300: #c47a48;
-  --p-accent-500: #b0682f;
-  --p-accent-600: #9a5b2e;
-  --p-accent-700: #7e4a24;
-  --p-accent-900: #321c10;   /* dark soft wash: ember link clears 4.75:1 on it */
+  /* Accent — Plum. Contrast checked (WCAG AA).
+     -600 is the client's literal plum hex, link/button color,
+     clears 4.5:1 on every light ground: 6.26:1 on bg-50, 6.70:1
+     on surface (white), 5.89:1 on the surface-alt band (-100);
+     warm-white text on it = 6.70:1.
+     -500 focus ring = 4.55:1 on bg (>=3:1 UI min).
+     -300 is the dark-mode accent = 7.05:1 on stone-950, 5.76:1
+     on stone-900. */
+  --p-accent-100: #F3E7ED;   /* soft wash */
+  --p-accent-300: #C98FA8;
+  --p-accent-500: #A85578;
+  --p-accent-600: #8E4162;
+  --p-accent-700: #723350;
+  --p-accent-900: #2E1620;   /* dark soft wash */
+
+  /* The one gold: a narrow, non-ramp pair reserved solely for the
+     --color-signature role (see Layer 2). Not a general accent —
+     used by exactly one CSS rule, on purpose ("spend boldness
+     once"). AA verified: -600 (light) = 6.46:1 on white, 6.03:1
+     on bg-50, 5.68:1 on surface-alt; -300 (dark) = 7.59:1 on
+     stone-900, 9.28:1 on stone-950. */
+  --p-signature-600: #755918;
+  --p-signature-300: #D9B34E;
 
   /* Absolutes + state hues. "white" is a warm paper-white (never
      pure #fff — tinted-neutral discipline); it is the light card
-     surface and the text on the terracotta button. */
+     surface and the text on the plum button. */
   --p-white:     #fffdf8;
   --p-black:     #000000;
-  --p-red-300:   #e08d78;   /* danger on dark surfaces */
+  --p-red-300:   #e08d78;   /* danger on dark surfaces: re-verified 5.96:1/7.29:1 on the new darks */
   --p-red-600:   #a63a29;
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
@@ -104,11 +134,11 @@
   --p-radius-lg:   0.9rem;
   --p-radius-full: 999px;
 
-  /* Shadows — soft, warm-tinted (rgb of ink #211d17). Lower
+  /* Shadows — soft, tinted to the new ink (rgb of #222725). Lower
      opacity + higher blur than default = the "expensive" read. */
-  --p-shadow-sm: 0 1px 2px rgba(33,29,23,0.05);
-  --p-shadow-md: 0 6px 22px rgba(33,29,23,0.07);
-  --p-shadow-lg: 0 24px 60px rgba(33,29,23,0.10);
+  --p-shadow-sm: 0 1px 2px rgba(34,39,37,0.05);
+  --p-shadow-md: 0 6px 22px rgba(34,39,37,0.07);
+  --p-shadow-lg: 0 24px 60px rgba(34,39,37,0.10);
 
   /* Layout + motion. --p-ease for micro-interactions (hover),
      --p-ease-entrance for the poised, staggered page-load. */
@@ -132,7 +162,8 @@
   --color-border-strong: var(--p-stone-300);
   /* Form-control boundary: must clear 3:1 against the surface it sits
      on (WCAG 1.4.11). stone-500 clears it on BOTH light and dark cards
-     (4.02:1 on white, 4.07:1 on dark stone-900), so no dark override. */
+     (4.82:1 on white, 3.09:1 on dark stone-900 — clears 3:1), so no
+     dark override. */
   --color-border-input:  var(--p-stone-500);
 
   /* Text */
@@ -148,6 +179,12 @@
   --color-primary-hover:  var(--p-accent-700);
   --color-primary-soft:   var(--p-accent-100);
   --color-focus-ring:     var(--p-accent-500);
+  /* NOTE (palette refresh): a second, deliberately narrow exception
+     to "accent = one ramp," same justification as --font-accent.
+     Gold is reserved for exactly one consumer, the .hl-accent
+     italic Fraunces word — plum owns every other role, so this
+     earns its own token rather than diluting "spend boldness once." */
+  --color-signature:      var(--p-signature-600);
 
   /* Feedback */
   --color-danger:  var(--p-red-600);
@@ -189,6 +226,7 @@
     --color-primary-hover:  var(--p-accent-100);
     --color-primary-soft:   var(--p-accent-900);
     --color-focus-ring:     var(--p-accent-300);
+    --color-signature:      var(--p-signature-300);
 
     --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
   }
@@ -209,6 +247,7 @@
   --color-primary-hover:  var(--p-accent-100);
   --color-primary-soft:   var(--p-accent-900);
   --color-focus-ring:     var(--p-accent-300);
+  --color-signature:      var(--p-signature-300);
 
   --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
 }

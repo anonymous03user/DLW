@@ -295,7 +295,7 @@ body.nav-open { overflow: hidden; }
   border: 1px solid var(--color-border);
 }
 .bio-card__figure--monogram::after {
-  /* inset terracotta frame, like a gallery mount */
+  /* inset plum frame, like a gallery mount */
   content: "";
   position: absolute;
   inset: 12px;
@@ -476,15 +476,15 @@ body.nav-open { overflow: hidden; }
 
 /* ---------------- The signature: Fraunces italic accent word ----------------
    The one bold thing. A soft-terminaled serif word in terracotta,
-   dropped into an otherwise all-grotesque, monochrome line.
-   SOFT/WONK come through because the woff2 is subset from source,
-   not the axis-flattening Google API. */
+   dropped into an otherwise all-grotesque, monochrome line, in
+   gold. SOFT/WONK come through because the woff2 is subset from
+   source, not the axis-flattening Google API. */
 .hl-accent {
   font-family: var(--font-accent);
   font-style: italic;
   font-weight: var(--p-weight-normal);
   font-variation-settings: "opsz" 144, "SOFT" 90, "WONK" 1;
-  color: var(--color-primary);
+  color: var(--color-signature);
 }
 
 /* Fraunces pull-quote / scripture voice (the serif soul, rationed) */
