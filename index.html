@@ -15,11 +15,11 @@
   <meta property="og:title" content="Dr. Leslie Wells | Speaker &amp; Energy-Medicine Facilitator" />
   <meta property="og:description" content="Keynotes, healing events, one-on-one sessions, and the Faith Consciousness retreats. One place to book Dr. Leslie." />
   <meta property="og:url" content="https://drlesliewells.com/" />
-  <meta property="og:image" content="https://drlesliewells.com/assets/images/horizon-band.jpg" />
+  <meta property="og:image" content="https://drlesliewells.com/assets/images/hero-warm.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts: preload the two critical subsets, then styles -->
-  <link rel="preload" href="/assets/fonts/bricolage-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/tokens.css" />
@@ -48,120 +48,30 @@
   </script>
 
   <style>
-    /* ---------- Home: hero ---------- */
-    .hero { padding-block: var(--p-space-10) var(--p-space-9); }
-    .hero__title {
-      font-family: var(--font-heading);
-      font-weight: var(--p-weight-semibold);
-      font-variation-settings: "opsz" 96, "wght" 600;
-      font-size: clamp(2.7rem, 1.4rem + 5.6vw, 5.25rem);
-      line-height: 1.0;
-      letter-spacing: -0.032em;
-      max-width: 15ch;
-      margin-bottom: var(--p-space-6);
-    }
-    .hero__title .hl-accent { letter-spacing: -0.01em; }
-    .hero__lede {
-      font-size: var(--p-text-lg);
-      color: var(--color-text-muted);
-      max-width: 48ch;
-      margin-bottom: var(--p-space-5);
-    }
-    .hero__testimony {
-      font-family: var(--font-accent);
-      font-style: italic;
-      font-variation-settings: "opsz" 40, "SOFT" 60;
-      font-size: var(--p-text-lg);
-      line-height: var(--p-leading-snug);
-      color: var(--color-text);
-      border-left: 2px solid var(--color-primary);
-      padding-left: var(--p-space-5);
-      max-width: 50ch;
-      margin-bottom: var(--p-space-6);
-    }
-    .hero__testimony a { color: var(--color-primary); font-style: normal; }
-    .hero__actions {
-      display: flex;
-      gap: var(--p-space-4);
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    /* Reserved slot: the announcement chip renders here without layout shift */
-    .hero__announce { min-height: 3.25rem; margin-bottom: var(--p-space-5); }
-
-    /* ---------- Featured-on strip ---------- */
-    .featured {
-      border-block: 1px solid var(--color-border);
-      padding-block: var(--p-space-5);
-    }
+    /* ---------- Featured-on press strip ---------- */
+    .featured { border-block: 1px solid var(--color-border); padding-block: var(--p-space-5); }
     .featured__inner {
-      display: flex;
-      align-items: center;
-      gap: var(--p-space-5) var(--p-space-7);
-      flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: center;
+      gap: var(--p-space-5) var(--p-space-7); flex-wrap: wrap;
     }
     .featured__label {
-      font-size: var(--p-text-xs);
-      letter-spacing: var(--p-tracking-wide);
-      text-transform: uppercase;
-      color: var(--color-text-subtle);
-      margin: 0;
+      font-size: var(--p-text-xs); letter-spacing: var(--p-tracking-wide);
+      text-transform: uppercase; color: var(--color-text-subtle); margin: 0;
     }
     .featured ul {
-      list-style: none;
-      display: flex;
-      gap: var(--p-space-5) var(--p-space-7);
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
+      list-style: none; display: flex; gap: var(--p-space-5) var(--p-space-7);
+      flex-wrap: wrap; margin: 0; padding: 0; justify-content: center;
     }
     .featured li {
       font-family: var(--font-heading);
-      font-size: var(--p-text-lg);
-      font-weight: var(--p-weight-medium);
-      letter-spacing: var(--p-tracking-wide);
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-      white-space: nowrap;
+      font-variation-settings: "opsz" 40;
+      font-size: var(--p-text-lg); font-weight: var(--p-weight-medium);
+      color: var(--color-text-muted); white-space: nowrap;
     }
 
-    /* ---------- Story band ---------- */
-    .story-band { position: relative; }
-    .story-band__media {
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-pop);
-    }
-    .story-band__media img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .story-band__card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--card-radius);
-      box-shadow: var(--card-shadow);
-      padding: var(--p-space-7);
-      max-width: 34rem;
-      margin-top: calc(-1 * var(--p-space-8));
-      margin-inline: var(--p-space-6);
-      position: relative;
-    }
-    .story-band__card p { color: var(--color-text-muted); }
-    @media (max-width: 860px) {
-      .story-band__card {
-        margin-inline: var(--p-space-3);
-        padding: var(--p-space-6);
-        margin-top: calc(-1 * var(--p-space-6));
-      }
-    }
-
-    /* ---------- Upcoming ---------- */
-    .upcoming .event-list { min-height: 18rem; }
-
-    /* ---------- Teacher ---------- */
+    /* ---------- Teacher band ---------- */
     .teacher { background: var(--color-surface-alt); }
+    .upcoming .event-list { min-height: 18rem; }
   </style>
 </head>
 <body>
@@ -186,33 +96,33 @@
 
   <main id="main">
 
-    <!-- ============ HERO: who she is + the two paths ============ -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero__announce">
-          <div class="announce" data-announcement hidden></div>
+    <!-- ============ SPLIT HERO ============ -->
+    <section class="hero-split" aria-labelledby="hero-title">
+      <div class="hero-split__text">
+        <div class="hero-split__inner">
+          <div class="hero-split__announce reveal" style="--i:0">
+            <div class="announce" data-announcement hidden></div>
+          </div>
+          <p class="kicker reveal" style="--i:1"><span class="kicker__mark" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
+          <h1 id="hero-title" class="hero-split__title display reveal" style="--i:2">Where faith meets <span class="hl-accent">frequency</span>.</h1>
+          <p class="hero-split__lede reveal" style="--i:3">
+            Speaker, energy-medicine facilitator, radio host, and founder of
+            Faith Consciousness. For more than two decades, Dr. Leslie has helped
+            people move out of suffering and into the creative power of their
+            own faith.
+          </p>
+          <div class="hero-split__actions reveal" style="--i:4">
+            <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
+            <a class="btn btn--ghost btn--lg" href="https://faithconsciousness.com">Explore the teaching</a>
+          </div>
         </div>
-        <p class="eyebrow reveal" style="--i:0"><span class="star" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
-        <h1 class="hero__title reveal" style="--i:1">Where faith meets <span class="hl-accent">frequency</span>.</h1>
-        <p class="hero__lede reveal" style="--i:2">
-          Speaker, energy-medicine facilitator, radio host, and founder of
-          Faith Consciousness. For more than two decades, Dr. Leslie has helped
-          people move out of suffering and into the creative power of their
-          own faith.
-        </p>
-        <p class="hero__testimony reveal" style="--i:3">
-          In 2025 she faced a breast cancer diagnosis and, by her own account,
-          experienced a spontaneous healing by living the very principles she
-          teaches. <a href="/story.html">Her story, in her words</a>.
-        </p>
-        <div class="hero__actions reveal" style="--i:4">
-          <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
-          <a class="btn btn--ghost btn--lg" href="https://faithconsciousness.com">Explore the teaching</a>
-        </div>
+      </div>
+      <div class="hero-split__media reveal" style="--i:1">
+        <img src="/assets/images/hero-warm.jpg" alt="Warm morning light across a quiet room" width="1200" height="1500" />
       </div>
     </section>
 
-    <!-- ============ FEATURED-ON STRIP: documented appearances ============ -->
+    <!-- ============ FEATURED-ON STRIP ============ -->
     <section class="featured" aria-label="Featured on">
       <div class="container featured__inner">
         <p class="featured__label">Featured on</p>
@@ -225,11 +135,32 @@
       </div>
     </section>
 
-    <!-- ============ OFFERINGS: rendered from data/offerings.json ============ -->
+    <!-- ============ STATS / CREDIBILITY BAND ============ -->
+    <section class="stats" aria-label="At a glance">
+      <div class="container">
+        <div class="stats__grid reveal">
+          <div class="stat">
+            <span class="stat__num">20+</span>
+            <span class="stat__label">Years in practice</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">3</span>
+            <span class="stat__label">Eras of the teaching</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">200+</span>
+            <span class="stat__label">Countries reached</span>
+            <span class="stat__flag">To confirm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OFFERINGS ============ -->
     <section class="section" aria-labelledby="offerings-title">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Work with her</p>
+          <p class="kicker"><span class="kicker__mark" aria-hidden="true">&#10022;</span>Work with her</p>
           <h2 id="offerings-title">Ways to work together</h2>
           <p class="section-head__lede">
             Whether you are planning an event or seeking your own healing,
@@ -248,33 +179,45 @@
       </div>
     </section>
 
-    <!-- ============ STORY BAND ============ -->
-    <section class="section story-band" aria-labelledby="story-title">
+    <!-- ============ EDITORIAL STORY BAND ============ -->
+    <section class="section" aria-labelledby="story-title">
       <div class="container">
-        <div class="story-band__media reveal">
-          <img src="/assets/images/horizon-band.jpg" alt="A warm dawn horizon over still water" width="1600" height="900" loading="lazy" />
-        </div>
-        <div class="story-band__card reveal" style="--i:1">
-          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>Her story</p>
-          <h2 id="story-title">From the spine to the spirit</h2>
-          <p>
-            A steel rod at fourteen. A chiropractor's calling. Two decades of
-            practice that kept deepening, from the structure of the body to
-            the energy that moves through it. Her story is the reason the
-            work exists.
-          </p>
-          <a href="/story.html">Read her story &rarr;</a>
+        <div class="editorial__grid">
+          <div class="editorial__media editorial__media--arch reveal">
+            <img src="/assets/images/story-arch.jpg" alt="A warm dawn horizon over still water" width="1000" height="1250" loading="lazy" />
+          </div>
+          <div class="editorial__body reveal" style="--i:1">
+            <p class="kicker"><span class="kicker__mark" aria-hidden="true">&#10022;</span>Her story</p>
+            <h2 id="story-title">From the spine to the spirit</h2>
+            <p>
+              A steel rod at fourteen. A chiropractor's calling. Two decades of
+              practice that kept deepening, from the structure of the body to
+              the energy that moves through it. Her story is the reason the
+              work exists.
+            </p>
+            <p><a href="/story.html">Read her story &rarr;</a></p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ UPCOMING: rendered from data/events.json ============ -->
+    <!-- ============ MANIFESTO PULL-QUOTE ============ -->
+    <section class="section manifesto" aria-label="The teaching, in one line">
+      <div class="container">
+        <blockquote class="manifesto__quote reveal">
+          Rooted in scripture. Revealed through science. Realized in you.
+        </blockquote>
+        <p class="manifesto__cite reveal" style="--i:1">The Faith Consciousness teaching</p>
+      </div>
+    </section>
+
+    <!-- ============ UPCOMING DATES ============ -->
     <section class="section upcoming" aria-labelledby="upcoming-title">
       <div class="container">
         <div class="section-head reveal">
           <div class="section-head__row">
             <div>
-              <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>On the calendar</p>
+              <p class="kicker"><span class="kicker__mark" aria-hidden="true">&#10022;</span>On the calendar</p>
               <h2 id="upcoming-title">Upcoming dates</h2>
               <p class="section-head__lede">Retreats and free intro talks around Charlotte and Mooresville.</p>
             </div>
@@ -286,11 +229,11 @@
       </div>
     </section>
 
-    <!-- ============ THE TEACHER: rendered from data/bio.json ============ -->
+    <!-- ============ THE TEACHER ============ -->
     <section class="section teacher" aria-labelledby="teacher-title">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow"><span class="star" aria-hidden="true">&#10022;</span>The teacher</p>
+          <p class="kicker"><span class="kicker__mark" aria-hidden="true">&#10022;</span>The teacher</p>
           <h2 id="teacher-title">Meet Dr. Leslie</h2>
         </div>
         <div class="bio-card reveal" style="--i:1" data-bio></div>

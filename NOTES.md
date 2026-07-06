@@ -32,8 +32,22 @@ be able to read this and know exactly where things stand.
       reserved for the .hl-accent signature word ALONE. Two files touched
       (tokens.css + one line in site.css). Design-reviewer: **Ship**;
       Lighthouse 100 a11y/BP/SEO on home + speaking. Fonts/layout/motion
-      unchanged. The 6 non-home pages remain re-skinned but per-page-craft
-      PENDING (now in plum instead of terracotta).
+      unchanged. SUPERSEDED by the re-look below (client rejected plum).
+- [x] **HOMEPAGE RE-LOOK: "WARM EARTHY EDITORIAL"** (client redirected to
+      warm serif-led, photography-forward references — Mind-Body / María).
+      Palette: terracotta primary + OLIVE second accent (--color-secondary,
+      a real legible foreground) + cream/espresso neutrals + warm gold for the
+      one signature word. Type FLIPPED to serif-led: Fraunces now leads as
+      display/heading (--font-heading repointed; Bricolage retired). Pill
+      buttons. Homepage REBUILT into editorial modules: split hero, press
+      strip, stats/credibility band (big Fraunces numbers on an olive band),
+      offerings, editorial story band with an ARCH (chapel-window) image,
+      manifesto pull-quote, events feed, monogram bio, dark CTA. Design-
+      reviewer: **Ship**; Lighthouse 100 a11y/BP/SEO. Imagery: hero + arch are
+      atmospheric PLACEHOLDERS (one dawn photo, flipped) — client will supply
+      generated finals to the shot list in the plan file; slots are reserved
+      (fixed aspect, no CLS). The 6 non-home pages now inherit the warm palette
+      + serif headings automatically; their editorial per-page craft is PENDING.
 - [x] Step 4 — all seven pages built: index, story, speaking, healing-events,
       sessions, retreats, book-dr-leslie. Plus 404, sitemap.xml, robots.txt.
 - [x] Step 5 — editable feed verified end-to-end in the browser: edited
@@ -71,6 +85,19 @@ be able to read this and know exactly where things stand.
 
 ## Lessons (one per note)
 
+- **The local preview server must be THREADED.** A single-threaded
+  `socketserver.TCPServer` no-cache server deadlocks on a browser's parallel
+  requests (curl works, page loads/screenshots hang). Use
+  `http.server.ThreadingHTTPServer`. (`python3 -m http.server` is already
+  threaded; a hand-rolled one is not unless you say so.)
+- **Every new semantic token needs a dark-mode override if it's a surface.**
+  `--color-secondary-soft` (olive tint) had no dark value, so the dark stats
+  band stayed a LIGHT band while its text flipped light → invisible. Added
+  --p-olive-900 + the override. Check any *-soft/tint token in both modes.
+- **chrome-devtools screenshot/Lighthouse need the tab foregrounded and a
+  single tab.** NO_FCP and capture timeouts cleared after closing the
+  duplicate tab and `select_page(bringToFront)`. Playwright was the more
+  reliable screenshotter for the tall full-page captures.
 - **Local copy wasn't a clone.** git init + remote add + `git reset --mixed
   origin/main` attaches a matching folder to an existing repo without
   touching files.

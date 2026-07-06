@@ -16,82 +16,82 @@
    direction re-maps the heading role, which a pure value-swap
    cannot express. Component layer untouched.
 
-   Palette refresh (Jul 2026): client-directed color swap on top
-   of the direction above. Accent moves from terracotta to PLUM;
-   neutrals move from warm oak/clay to a sage-tinted scale; a new
-   narrow --color-signature (antique-brass gold) role is added
-   for the ONE existing signature-word consumer only (.hl-accent
-   in css/site.css) — same "earns its own token" precedent as
-   --font-accent. Sage itself is never used as text/button color
-   (it fails AA outright as a light-mode foreground, 1.38:1 on
-   white) — it lives only in the neutral ramp, at the same
-   barely-there hairline subtlety the ramp already had.
+   Re-look (Jul 2026): "WARM EARTHY EDITORIAL". Client redirected
+   to a serif-led, photography-forward magazine look (terracotta +
+   olive + cream, à la the Mind-Body / María references). Plum is
+   fully retired. Fraunces now LEADS as the display/heading serif
+   (--font-heading repointed from Bricolage); Hanken stays body;
+   Fraunces italic stays the accent/pull-quote voice. Olive joins
+   as a genuine SECOND accent (--color-secondary) — legible as a
+   foreground on cream (5.7:1), unlike the pale plum-era sage.
+   Buttons are pill. Every pairing AA-verified (python) before
+   applying. This supersedes the two notes above.
    ============================================================ */
 
 /* ---------------- Layer 1 · Primitives ---------------- */
 :root {
-  /* Sage-tinted scale — tinted, never pure grey. Doubles as the
-     dark ramp (100 = dark-mode text, 900 = ink & dark surface,
-     950 = dark bg). AA verified: ink 13.9:1 light / 16.0:1 dark.
-     -200 is the client's literal sage hex (#DBDFAC), used as the
-     hairline border color; other steps are sage-cast tints
-     interpolated around it. -900/-950 are the client's two
-     near-black anchors: -900 (warm) is both the light-mode ink
-     AND the dark-mode card surface; -950 (cool navy) is the
-     dark-mode canvas only — they're too close in luminance
-     (1.22:1) to be two steps of one ramp, but read fine as two
-     distinct roles (matches the prior palette's own 1.06:1
-     bg/surface gap, so this is not a new subtlety). */
-  --p-stone-50:  #F5F6ED;
-  --p-stone-100: #EEF0DF;
-  --p-stone-200: #DBDFAC;
-  --p-stone-300: #C3C8A0;
-  --p-stone-400: #9BA184;
-  --p-stone-500: #6E7360;
-  --p-stone-600: #525645;
-  --p-stone-700: #3A3D30;
-  --p-stone-800: #2A2D24;
-  --p-stone-900: #222725;
-  --p-stone-950: #0D1321;
+  /* Warm cream/espresso scale — tinted, never pure grey. Doubles
+     as the dark ramp (100 = dark-mode text, 900 = ink & dark card
+     surface, 950 = dark bg). AA verified: ink 13.2:1 light /
+     14.2:1 dark. -200 is the hairline border. */
+  --p-stone-50:  #F6F1E7;
+  --p-stone-100: #EEE6D4;
+  --p-stone-200: #E1D5BD;
+  --p-stone-300: #CFBF9F;
+  --p-stone-400: #AD9D80;
+  --p-stone-500: #877858;
+  --p-stone-600: #5D5340;
+  --p-stone-700: #423A2C;
+  --p-stone-800: #2B2418;
+  --p-stone-900: #2E2620;
+  --p-stone-950: #1E1811;
 
-  /* Accent — Plum. Contrast checked (WCAG AA).
-     -600 is the client's literal plum hex, link/button color,
-     clears 4.5:1 on every light ground: 6.26:1 on bg-50, 6.70:1
-     on surface (white), 5.89:1 on the surface-alt band (-100);
-     warm-white text on it = 6.70:1.
-     -500 focus ring = 4.55:1 on bg (>=3:1 UI min).
-     -300 is the dark-mode accent = 7.05:1 on stone-950, 5.76:1
-     on stone-900. */
-  --p-accent-100: #F3E7ED;   /* soft wash */
-  --p-accent-300: #C98FA8;
-  --p-accent-500: #A85578;
-  --p-accent-600: #8E4162;
-  --p-accent-700: #723350;
-  --p-accent-900: #2E1620;   /* dark soft wash */
+  /* Accent — Terracotta. Contrast checked (WCAG AA).
+     -600 is the link/button terracotta, clears 4.5:1 on every
+     light ground: 5.07:1 on bg-50, 5.38:1 on white, 4.59:1 on
+     surface-alt (-100), 4.60:1 on the soft wash (-100 accent);
+     warm-white text on it = 5.38:1.
+     -500 focus ring = 3.44:1 on bg (>=3:1 UI min).
+     -300 is the dark-mode accent = 6.70:1 on stone-950. */
+  --p-accent-100: #F4E4D8;   /* soft wash: terracotta clears 4.60:1 on it */
+  --p-accent-300: #D98E63;
+  --p-accent-500: #C06B41;
+  --p-accent-600: #A34E2B;
+  --p-accent-700: #8E4728;
+  --p-accent-900: #3A2114;   /* dark soft wash: ember clears 5.68:1 on it */
+
+  /* Second accent — Olive. A genuine foreground color this time
+     (eyebrows, kickers, section tints, rules). AA verified:
+     -600 = 5.73:1 on bg-50, 5.20:1 on surface-alt; -300 (dark) =
+     7.42:1 on bg-950. -100 is an olive section tint (ink 11.8:1
+     on it). */
+  --p-olive-100: #E7E7CE;   /* light olive tint (stats band, light mode) */
+  --p-olive-300: #A9AC77;
+  --p-olive-600: #5F6138;
+  --p-olive-900: #282A1C;   /* deep olive tint (stats band, dark mode) */
 
   /* The one gold: a narrow, non-ramp pair reserved solely for the
-     --color-signature role (see Layer 2). Not a general accent —
-     used by exactly one CSS rule, on purpose ("spend boldness
-     once"). AA verified: -600 (light) = 6.46:1 on white, 6.03:1
-     on bg-50, 5.68:1 on surface-alt; -300 (dark) = 7.59:1 on
-     stone-900, 9.28:1 on stone-950. */
-  --p-signature-600: #755918;
+     --color-signature role (see Layer 2), used by exactly one CSS
+     rule (.hl-accent), on purpose ("spend boldness once"). AA
+     verified: -600 (light) = 5.28:1 on bg-50, 4.78:1 on surface-
+     alt; -300 (dark) = 7.43:1 on stone-900. */
+  --p-signature-600: #7E5F14;
   --p-signature-300: #D9B34E;
 
   /* Absolutes + state hues. "white" is a warm paper-white (never
      pure #fff — tinted-neutral discipline); it is the light card
-     surface and the text on the plum button. */
-  --p-white:     #fffdf8;
+     surface and the text on the terracotta button. */
+  --p-white:     #FCF8F0;
   --p-black:     #000000;
-  --p-red-300:   #e08d78;   /* danger on dark surfaces: re-verified 5.96:1/7.29:1 on the new darks */
+  --p-red-300:   #e08d78;   /* danger on dark surfaces: 6.9:1 on bg-950 */
   --p-red-600:   #a63a29;
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
 
   /* Type families — self-hosted VARIABLE fonts (css/fonts.css).
-     display = the grotesque that leads; serif = Fraunces, the
-     rationed soul accent; sans = Hanken, the body workhorse. */
-  --p-font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+     serif = Fraunces, now the DISPLAY/heading lead AND the italic
+     accent/pull-quote voice; sans = Hanken, the body workhorse.
+     (Bricolage retired in the Warm Earthy Editorial re-look.) */
   --p-font-serif:   "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --p-font-sans:    "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -104,6 +104,7 @@
   --p-text-2xl:  clamp(1.7rem, 1.35rem + 1.6vw, 2.25rem);
   --p-text-3xl:  clamp(2.2rem, 1.60rem + 2.8vw, 3.15rem);
   --p-text-4xl:  clamp(2.9rem, 1.90rem + 4.6vw, 4.50rem);
+  --p-text-5xl:  clamp(3.4rem, 2.00rem + 6.4vw, 6.25rem);   /* editorial serif hero + stats numbers */
 
   --p-leading-tight:  1.12;
   --p-leading-snug:   1.3;
@@ -134,11 +135,11 @@
   --p-radius-lg:   0.9rem;
   --p-radius-full: 999px;
 
-  /* Shadows — soft, tinted to the new ink (rgb of #222725). Lower
-     opacity + higher blur than default = the "expensive" read. */
-  --p-shadow-sm: 0 1px 2px rgba(34,39,37,0.05);
-  --p-shadow-md: 0 6px 22px rgba(34,39,37,0.07);
-  --p-shadow-lg: 0 24px 60px rgba(34,39,37,0.10);
+  /* Shadows — soft, tinted to the new espresso ink (rgb of
+     #2E2620). Lower opacity + higher blur = the "expensive" read. */
+  --p-shadow-sm: 0 1px 2px rgba(46,38,32,0.05);
+  --p-shadow-md: 0 6px 22px rgba(46,38,32,0.07);
+  --p-shadow-lg: 0 24px 60px rgba(46,38,32,0.10);
 
   /* Layout + motion. --p-ease for micro-interactions (hover),
      --p-ease-entrance for the poised, staggered page-load. */
@@ -162,7 +163,7 @@
   --color-border-strong: var(--p-stone-300);
   /* Form-control boundary: must clear 3:1 against the surface it sits
      on (WCAG 1.4.11). stone-500 clears it on BOTH light and dark cards
-     (4.82:1 on white, 3.09:1 on dark stone-900 — clears 3:1), so no
+     (4.08:1 on white, 3.43:1 on dark stone-900 — clears 3:1), so no
      dark override. */
   --color-border-input:  var(--p-stone-500);
 
@@ -179,11 +180,15 @@
   --color-primary-hover:  var(--p-accent-700);
   --color-primary-soft:   var(--p-accent-100);
   --color-focus-ring:     var(--p-accent-500);
-  /* NOTE (palette refresh): a second, deliberately narrow exception
-     to "accent = one ramp," same justification as --font-accent.
-     Gold is reserved for exactly one consumer, the .hl-accent
-     italic Fraunces word — plum owns every other role, so this
-     earns its own token rather than diluting "spend boldness once." */
+  /* Second accent — olive. A legible foreground (unlike the pale
+     plum-era sage), used for eyebrows, kickers, section rules and
+     tints. Has a dark override (olive-300). */
+  --color-secondary:      var(--p-olive-600);
+  --color-secondary-soft: var(--p-olive-100);
+  /* NOTE: --color-signature is a narrow, deliberate exception, same
+     justification as --font-accent. Gold is reserved for exactly one
+     consumer, the .hl-accent italic Fraunces word — "spend boldness
+     once." */
   --color-signature:      var(--p-signature-600);
 
   /* Feedback */
@@ -191,14 +196,13 @@
   --color-success: var(--p-green-600);
   --color-warning: var(--p-amber-600);
 
-  /* Typography roles.
-     NOTE (Frequency & Faith): this is the ONE place the art-direction
-     pass touches Layer 2. A grotesque-led direction re-maps the
-     heading role from serif to display and adds a dedicated serif
-     "accent" role (Fraunces) for the signature line + scripture.
-     A pure Layer-1 value-swap cannot express a role change, so these
-     three lines are the deliberate, documented exception. */
-  --font-heading: var(--p-font-display);
+  /* Typography roles (documented Layer-2 exception — a font-role
+     change can't be expressed by a value swap).
+     Warm Earthy Editorial: Fraunces now LEADS as the heading serif
+     (was Bricolage grotesque). --font-accent is the same Fraunces,
+     used italic for the signature word + pull-quotes; --font-body
+     stays Hanken. */
+  --font-heading: var(--p-font-serif);
   --font-body:    var(--p-font-sans);
   --font-accent:  var(--p-font-serif);
 
@@ -226,6 +230,8 @@
     --color-primary-hover:  var(--p-accent-100);
     --color-primary-soft:   var(--p-accent-900);
     --color-focus-ring:     var(--p-accent-300);
+    --color-secondary:      var(--p-olive-300);
+    --color-secondary-soft: var(--p-olive-900);
     --color-signature:      var(--p-signature-300);
 
     --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
@@ -247,6 +253,8 @@
   --color-primary-hover:  var(--p-accent-100);
   --color-primary-soft:   var(--p-accent-900);
   --color-focus-ring:     var(--p-accent-300);
+  --color-secondary:      var(--p-olive-300);
+  --color-secondary-soft: var(--p-olive-900);
   --color-signature:      var(--p-signature-300);
 
   --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
@@ -260,9 +268,9 @@
   --button-bg:            var(--color-primary);
   --button-bg-hover:      var(--color-primary-hover);
   --button-text:          var(--color-text-on-accent);
-  --button-radius:        var(--p-radius-md);
+  --button-radius:        var(--p-radius-full);   /* pill — editorial look */
   --button-pad-y:         var(--p-space-3);
-  --button-pad-x:         var(--p-space-5);
+  --button-pad-x:         var(--p-space-6);
 
   /* Card */
   --card-bg:              var(--color-surface);

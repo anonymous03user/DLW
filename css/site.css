@@ -295,7 +295,7 @@ body.nav-open { overflow: hidden; }
   border: 1px solid var(--color-border);
 }
 .bio-card__figure--monogram::after {
-  /* inset plum frame, like a gallery mount */
+  /* inset terracotta frame, like a gallery mount */
   content: "";
   position: absolute;
   inset: 12px;
@@ -475,10 +475,11 @@ body.nav-open { overflow: hidden; }
 }
 
 /* ---------------- The signature: Fraunces italic accent word ----------------
-   The one bold thing. A soft-terminaled serif word in terracotta,
-   dropped into an otherwise all-grotesque, monochrome line, in
-   gold. SOFT/WONK come through because the woff2 is subset from
-   source, not the axis-flattening Google API. */
+   The one bold thing. A soft-terminaled serif word in gold, dropped
+   into an otherwise monochrome serif line (Fraunces leads the page,
+   so the accent is a color + italic shift, not a family shift).
+   SOFT/WONK come through because the woff2 is subset from source,
+   not the axis-flattening Google API. */
 .hl-accent {
   font-family: var(--font-accent);
   font-style: italic;
@@ -513,3 +514,161 @@ html.js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ============================================================
+   WARM EARTHY EDITORIAL — homepage modules (serif-led, magazine)
+   Reusable across pages. Fraunces leads (--font-heading); olive
+   is the --color-secondary kicker/rule color; buttons are pills.
+   ============================================================ */
+
+/* Olive kicker label (the small uppercase labels above headings) */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--p-text-xs);
+  font-weight: var(--p-weight-semibold);
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0 0 var(--p-space-4);
+}
+.kicker__mark { color: var(--color-primary); margin-right: var(--p-space-2); }
+
+/* Display heading helper — Fraunces at high optical size, elegant weight */
+.display {
+  font-family: var(--font-heading);
+  font-weight: var(--p-weight-normal);
+  font-variation-settings: "opsz" 144, "wght" 460, "SOFT" 20;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* ---------------- Split hero ---------------- */
+.hero-split { display: grid; grid-template-columns: 1fr; }
+.hero-split__text {
+  display: flex;
+  align-items: center;
+  padding: var(--p-space-9) var(--p-space-6) var(--p-space-8);
+  background: var(--color-bg);
+}
+.hero-split__inner { max-width: 40rem; width: 100%; }
+.hero-split__media {
+  position: relative;
+  min-height: 34vh;   /* mobile: keep the lede + CTA near the fold */
+  background: var(--color-surface-alt);
+  overflow: hidden;
+}
+.hero-split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-split__title {
+  font-size: var(--p-text-5xl);
+  max-width: 14ch;
+  margin: 0 0 var(--p-space-5);
+}
+.hero-split__lede {
+  font-size: var(--p-text-lg);
+  color: var(--color-text-muted);
+  max-width: 46ch;
+  margin: 0 0 var(--p-space-6);
+}
+.hero-split__actions { display: flex; gap: var(--p-space-4); flex-wrap: wrap; align-items: center; }
+.hero-split__announce { min-height: 3.25rem; margin-bottom: var(--p-space-5); }
+@media (min-width: 960px) {
+  .hero-split { grid-template-columns: 1.06fr 0.94fr; min-height: min(86vh, 840px); }
+  /* align the text block's left edge to the site container gutter */
+  .hero-split__text {
+    padding-left: max(var(--p-space-7), calc((100vw - var(--p-container)) / 2 + var(--p-space-5)));
+    padding-right: var(--p-space-8);
+  }
+  .hero-split__media { min-height: 100%; }
+}
+
+/* ---------------- Stats / credibility band ---------------- */
+.stats { background: var(--color-secondary-soft); border-block: 1px solid var(--color-border); }
+.stats__grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.stat { text-align: center; padding: var(--p-space-8) var(--p-space-4); }
+.stat + .stat { border-left: 1px solid var(--color-border); }
+.stat__num {
+  font-family: var(--font-heading);
+  font-weight: var(--p-weight-medium);
+  font-variation-settings: "opsz" 144;
+  font-size: var(--p-text-4xl);
+  line-height: 1;
+  color: var(--color-text);
+}
+.stat__label {
+  display: block;
+  margin-top: var(--p-space-3);
+  font-size: var(--p-text-xs);
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.stat__flag {
+  display: inline-block;
+  margin-top: var(--p-space-2);
+  font-size: 0.66rem;
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--p-radius-full);
+  padding: 1px var(--p-space-2);
+}
+@media (max-width: 640px) {
+  .stats__grid { grid-template-columns: 1fr; }
+  .stat { padding-block: var(--p-space-6); }
+  .stat + .stat { border-left: 0; border-top: 1px solid var(--color-border); }
+}
+
+/* ---------------- Editorial image + text band ---------------- */
+.editorial__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--p-space-7);
+  align-items: center;
+}
+.editorial__media {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: 1.4rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-pop);
+  background: var(--color-surface-alt);
+}
+.editorial__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Arch variant — a soft chapel-window top, sacred without kitsch */
+.editorial__media--arch { aspect-ratio: 4 / 5; border-radius: 999px 999px 1.4rem 1.4rem; }
+.editorial__body h2 { font-size: var(--p-text-3xl); margin-bottom: var(--p-space-4); }
+.editorial__body p { color: var(--color-text-muted); }
+@media (min-width: 860px) {
+  .editorial__grid { grid-template-columns: 1fr 1fr; gap: var(--p-space-8); }
+  .editorial--flip .editorial__media { order: 2; }
+}
+
+/* ---------------- Manifesto pull-quote band ---------------- */
+.manifesto { background: var(--color-surface-alt); text-align: center; }
+.manifesto__quote {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 60;
+  font-weight: var(--p-weight-normal);
+  font-size: var(--p-text-3xl);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  max-width: 24ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.manifesto__cite {
+  margin-top: var(--p-space-5);
+  font-size: var(--p-text-sm);
+  letter-spacing: var(--p-tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Buttons pick up the pill radius from tokens automatically; give the
+   ghost button a hairline that reads on the warm ground */
+.btn--ghost { border-color: var(--color-border-strong); }
