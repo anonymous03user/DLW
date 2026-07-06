@@ -556,10 +556,21 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .hero-split__media {
   position: relative;
   min-height: 34vh;   /* mobile: keep the lede + CTA near the fold */
-  background: var(--color-surface-alt);
+  background: var(--color-primary-soft);
   overflow: hidden;
 }
-.hero-split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* She is a die-cut portrait grounded at the base of a warm color field
+   (not a full-bleed photo) — "here I am", not a mood shot standing in for her. */
+.hero-split__media img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 96%;
+  max-width: 92%;
+  object-fit: contain;
+}
 .hero-split__title {
   font-size: var(--p-text-5xl);
   max-width: 14ch;
@@ -571,8 +582,33 @@ html.js .reveal.in { opacity: 1; transform: none; }
   max-width: 46ch;
   margin: 0 0 var(--p-space-6);
 }
-.hero-split__actions { display: flex; gap: var(--p-space-4); flex-wrap: wrap; align-items: center; }
-.hero-split__announce { min-height: 3.25rem; margin-bottom: var(--p-space-5); }
+.hero-split__actions { display: flex; gap: var(--p-space-5); flex-wrap: wrap; align-items: center; }
+/* Quiet secondary path — one prominent pill + a plain underlined link,
+   so the hero reads with a single CTA (the "here I am" simplicity) without
+   losing the teaching destination. */
+.hero-split__textlink {
+  font-family: var(--font-body);
+  font-weight: var(--p-weight-semibold);
+  font-size: var(--p-text-base);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  transition: text-decoration-color var(--p-dur-fast) var(--p-ease);
+}
+.hero-split__textlink:hover { text-decoration-color: var(--color-primary); }
+/* Announcement now sits BELOW the CTA as a quiet "what's bookable" note,
+   so the headline always leads the block (the "here I am" opener). */
+.hero-split__announce { margin-top: var(--p-space-6); }
+.hero-split__announce:empty, .hero-split__announce .announce[hidden] { display: none; }
+
+/* Mobile "here I am": her portrait leads, right under the header, so the
+   first thing seen is HER — then her name and the pitch below. */
+@media (max-width: 959px) {
+  .hero-split__media { order: -1; min-height: 48vh; }
+  .hero-split__text { padding-top: var(--p-space-7); }
+}
 @media (min-width: 960px) {
   .hero-split { grid-template-columns: 1.06fr 0.94fr; min-height: min(86vh, 840px); }
   /* align the text block's left edge to the site container gutter */

@@ -15,12 +15,18 @@
   <meta property="og:title" content="Dr. Leslie Wells | Speaker &amp; Energy-Medicine Facilitator" />
   <meta property="og:description" content="Keynotes, healing events, one-on-one sessions, and the Faith Consciousness retreats. One place to book Dr. Leslie." />
   <meta property="og:url" content="https://drlesliewells.com/" />
-  <meta property="og:image" content="https://drlesliewells.com/assets/images/hero-warm.jpg" />
+  <meta property="og:image" content="https://drlesliewells.com/assets/images/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dr. Leslie Wells, speaker and founder of Faith Consciousness" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://drlesliewells.com/assets/images/og-home.jpg" />
 
   <!-- Fonts: preload the two critical subsets, then styles -->
   <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/hanken-400.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Hero portrait: the LCP-region image, preloaded so she paints immediately -->
+  <link rel="preload" href="/assets/images/leslie-hero.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
@@ -100,25 +106,27 @@
     <section class="hero-split" aria-labelledby="hero-title">
       <div class="hero-split__text">
         <div class="hero-split__inner">
-          <div class="hero-split__announce reveal" style="--i:0">
-            <div class="announce" data-announcement hidden></div>
-          </div>
-          <p class="kicker reveal" style="--i:1"><span class="kicker__mark" aria-hidden="true">&#10022;</span>Dr. Leslie Wells, DC &middot; Charlotte, North Carolina</p>
-          <h1 id="hero-title" class="hero-split__title display reveal" style="--i:2">Where faith meets <span class="hl-accent">frequency</span>.</h1>
+          <p class="kicker reveal" style="--i:1"><span class="kicker__mark" aria-hidden="true">&#10022;</span>Where faith meets frequency</p>
+          <h1 id="hero-title" class="hero-split__title display reveal" style="--i:2">Hi, I&rsquo;m Dr.&nbsp;Leslie.</h1>
           <p class="hero-split__lede reveal" style="--i:3">
-            Speaker, energy-medicine facilitator, radio host, and founder of
-            Faith Consciousness. For more than two decades, Dr. Leslie has helped
-            people move out of suffering and into the creative power of their
-            own faith.
+            I&rsquo;m here to help you move out of suffering and into the
+            creative power of your own faith. Speaker, energy-medicine
+            facilitator, and founder of Faith Consciousness.
           </p>
           <div class="hero-split__actions reveal" style="--i:4">
             <a class="btn btn--lg" href="/book-dr-leslie.html">Book Dr. Leslie</a>
-            <a class="btn btn--ghost btn--lg" href="https://faithconsciousness.com">Explore the teaching</a>
+            <a class="hero-split__textlink" href="https://faithconsciousness.com">Explore the teaching</a>
+          </div>
+          <div class="hero-split__announce reveal" style="--i:5">
+            <div class="announce" data-announcement hidden></div>
           </div>
         </div>
       </div>
       <div class="hero-split__media reveal" style="--i:1">
-        <img src="/assets/images/hero-warm.jpg" alt="Warm morning light across a quiet room" width="1200" height="1500" />
+        <picture>
+          <source srcset="/assets/images/leslie-hero.webp" type="image/webp" />
+          <img src="/assets/images/leslie-hero.png" alt="Dr. Leslie Wells smiling, in a white blouse and coral scarf, holding a microphone" width="986" height="1447" fetchpriority="high" />
+        </picture>
       </div>
     </section>
 
