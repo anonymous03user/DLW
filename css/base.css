@@ -36,6 +36,15 @@ h1, h2, h3, h4 {
   font-weight: var(--p-weight-semibold);
   text-wrap: balance;
 }
+/* The classic editorial rule: as type gets bigger it gets LIGHTER.
+   h1/h2 carry the hero's refined display voice (high optical size,
+   soft terminals, medium weight) so every scroll stop shares the
+   same expensive letterforms; h3/h4 keep semibold for small-size
+   presence. (.display refines further where used.) */
+h1, h2 {
+  font-weight: var(--p-weight-medium);
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+}
 h1 { font-size: var(--p-text-4xl); }
 h2 { font-size: var(--p-text-3xl); }
 h3 { font-size: var(--p-text-2xl); }
@@ -68,7 +77,11 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   margin-inline: auto;
   padding-inline: var(--p-space-5);
 }
-.section { padding-block: var(--p-space-9); }
+/* Fluid: full 6rem air on desktop, tightens to ~3.5rem on phones so
+   the mobile scroll reads edited, not stretched. --spacious gives the
+   two emotional peaks (manifesto, closing CTA) extra silence. */
+.section { padding-block: var(--p-space-section); }
+.section--spacious { padding-block: var(--p-space-section-lg); }
 
 /* Button component — uses Layer 3 tokens */
 .btn {
@@ -88,6 +101,8 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   cursor: pointer;
   text-decoration: none;
   transition: background var(--p-dur-fast) var(--p-ease),
+              color var(--p-dur-fast) var(--p-ease),
+              border-color var(--p-dur-fast) var(--p-ease),
               transform var(--p-dur-fast) var(--p-ease);
 }
 .btn:hover { background: var(--button-bg-hover); }

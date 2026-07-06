@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Native form controls + scrollbars follow the site's theme, and the
+       phone's browser chrome tints to match the page -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#F6F1E7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1E1811" media="(prefers-color-scheme: dark)" />
   <script>document.documentElement.classList.add("js")</script>
 
   <!-- SEO -->
@@ -15,8 +20,12 @@
   <meta property="og:title" content="Her Story | Dr. Leslie Wells" />
   <meta property="og:description" content="From the spine to the spirit: the arc behind the work of Dr. Leslie Wells." />
   <meta property="og:url" content="https://drlesliewells.com/story.html" />
-  <meta property="og:image" content="https://drlesliewells.com/assets/images/horizon-band.jpg" />
+  <meta property="og:image" content="https://drlesliewells.com/assets/images/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dr. Leslie Wells, speaker and founder of Faith Consciousness" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://drlesliewells.com/assets/images/og-home.jpg" />
 
   <!-- Fonts: preload the two critical subsets, then styles -->
   <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -27,6 +36,7 @@
   <link rel="stylesheet" href="/css/site.css" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <script type="application/ld+json">
   {
@@ -45,7 +55,7 @@
 
   <style>
     /* ---------- Story: hero ---------- */
-    .story-hero { padding-block: var(--p-space-9) var(--p-space-7); }
+    .story-hero { padding-block: var(--p-space-section) var(--p-space-7); }
     .story-hero h1 { max-width: 20ch; }
     .story-hero__lede {
       font-size: var(--p-text-lg);
@@ -80,7 +90,7 @@
       left: calc(9rem + var(--p-space-6) / 2);
       top: var(--p-space-6);
       transform: translate(-50%, 0.1em);
-      color: var(--color-primary);
+      color: var(--color-secondary);
       background: var(--color-bg);
       line-height: 1;
       padding-block: var(--p-space-1);
@@ -116,7 +126,7 @@
       font-size: var(--p-text-xl);
       line-height: var(--p-leading-snug);
       color: var(--color-text);
-      border-left: 2px solid var(--color-primary);
+      border-left: 2px solid var(--color-secondary);
       padding-left: var(--p-space-5);
       max-width: var(--p-measure);
       margin-bottom: var(--p-space-5);
@@ -362,6 +372,7 @@
       <div class="site-footer__grid">
         <div>
           <p class="site-footer__brand">Dr. Leslie Wells</p>
+          <p class="site-footer__voice voice">Rooted in scripture. Revealed through science. Realized in you.</p>
           <p class="site-footer__note">
             Founder of Faith Consciousness. The teaching lives at
             <a data-site-href="teaching_site_url" href="https://faithconsciousness.com">faithconsciousness.com</a>;
@@ -387,7 +398,7 @@
           <h2>Connect</h2>
           <ul>
             <li><a data-site-href="email" href="mailto:DrLeslieWells@gmail.com">DrLeslieWells@gmail.com</a></li>
-            <li><span data-site="phone_text_line">Text 743-900-5574</span></li>
+            <li><a data-site="phone_text_line" data-site-href="phone_sms" href="sms:+17439005574">Text 743-900-5574</a></li>
             <li><a data-site-href="youtube_url" href="https://www.youtube.com/channel/UCfDvR4XYsRokVp6NXiUWM1g">YouTube</a></li>
             <li><a data-site-href="linkedin_url" href="https://www.linkedin.com/in/leslie-wells-23040346/">LinkedIn</a></li>
             <li><span data-site="location_line">Charlotte, North Carolina</span></li>

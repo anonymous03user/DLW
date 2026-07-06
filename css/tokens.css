@@ -63,19 +63,24 @@
   /* Second accent — Olive. A genuine foreground color this time
      (eyebrows, kickers, section tints, rules). AA verified:
      -600 = 5.73:1 on bg-50, 5.20:1 on surface-alt; -300 (dark) =
-     7.42:1 on bg-950. -100 is an olive section tint (ink 11.8:1
-     on it). */
-  --p-olive-100: #E7E7CE;   /* light olive tint (stats band, light mode) */
+     7.42:1 on bg-950. The -100/-900 tints are deliberately more
+     CHROMATIC than the neutrals so the stats band reads as "the
+     green section", not more cream: labels (stone-600) = 5.53:1
+     on -100; labels (stone-400) = 4.81:1 on -900. */
+  --p-olive-100: #DEDFB8;   /* light olive tint (stats band, light mode) */
   --p-olive-300: #A9AC77;
   --p-olive-600: #5F6138;
-  --p-olive-900: #282A1C;   /* deep olive tint (stats band, dark mode) */
+  --p-olive-900: #313423;   /* deep olive tint (stats band, dark mode) */
 
   /* The one gold: a narrow, non-ramp pair reserved solely for the
      --color-signature role (see Layer 2), used by exactly one CSS
-     rule (.hl-accent), on purpose ("spend boldness once"). AA
-     verified: -600 (light) = 5.28:1 on bg-50, 4.78:1 on surface-
-     alt; -300 (dark) = 7.43:1 on stone-900. */
-  --p-signature-600: #7E5F14;
+     rule (.hl-accent), on purpose ("spend boldness once").
+     CONSTRAINT: -600 is tuned bright so it actually reads as GOLD,
+     which means it clears only the LARGE-text bar — 3.79:1 on
+     bg-50, 3.43:1 on surface-alt (>= 3:1). The signature word may
+     therefore appear ONLY at display sizes (3xl and up), never in
+     body copy. -300 (dark) = 7.68:1 on dark surface-alt. */
+  --p-signature-600: #9C7418;
   --p-signature-300: #D9B34E;
 
   /* Absolutes + state hues. "white" is a warm paper-white (never
@@ -87,6 +92,9 @@
   --p-red-600:   #a63a29;
   --p-green-600: #3f7a4f;
   --p-amber-600: #a56b17;
+  --p-amber-300: #C98F2C;   /* warning on dark surfaces: 4.53:1 on the
+                               olive-900 stats band (amber-600 dipped to
+                               2.87:1 there), 6.24:1 on bg-950 */
 
   /* Type families — self-hosted VARIABLE fonts (css/fonts.css).
      serif = Fraunces, now the DISPLAY/heading lead AND the italic
@@ -110,7 +118,13 @@
   --p-leading-snug:   1.3;
   --p-leading-normal: 1.6;
   --p-tracking-tight: -0.02em;
-  --p-tracking-wide:   0.06em;
+  --p-tracking-wide:   0.06em;  /* currently unused (all caps labels moved
+                                   to --p-tracking-caps); kept for body-size
+                                   emphasis if ever needed */
+  /* True editorial small-caps air for the tiny uppercase labels
+     (kickers, eyebrows, stat labels, flags) — 0.06em reads faintly
+     compressed next to the generous serif headlines. */
+  --p-tracking-caps:   0.11em;
   --p-weight-light:    300;
   --p-weight-normal:   400;
   --p-weight-medium:   500;
@@ -128,6 +142,11 @@
   --p-space-8: 4rem;
   --p-space-9: 6rem;
   --p-space-10: 8rem;
+  /* Fluid section rhythm: desktop keeps the 6rem/8rem air, phones
+     tighten to ~3.5rem/4.5rem so the scroll reads edited for the
+     device instead of desktop air stretched thin. */
+  --p-space-section:    clamp(3.5rem, 2.2rem + 5.5vw, 6rem);
+  --p-space-section-lg: clamp(4.5rem, 2.8rem + 7.5vw, 8rem);
 
   /* Radii */
   --p-radius-sm:   0.25rem;
@@ -155,6 +174,9 @@
 /* ---------------- Layer 2 · Semantic ---------------- */
 /* These are the ONLY tokens you use when building pages. */
 :root {
+  /* Native UI (scrollbars, form controls) follows the active theme
+     instead of defaulting to white-on-dark or dark-on-light. */
+  color-scheme: light dark;
   /* Surfaces */
   --color-bg:            var(--p-stone-50);
   --color-surface:       var(--p-white);
@@ -234,10 +256,12 @@
     --color-secondary-soft: var(--p-olive-900);
     --color-signature:      var(--p-signature-300);
 
-    --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
+    --color-danger:  var(--p-red-300);   /* red-600 is 2.5:1 on dark cards */
+    --color-warning: var(--p-amber-300); /* amber-600 is 2.87:1 on the dark stats band */
   }
 }
 [data-theme="dark"] {
+  color-scheme: dark; /* native UI matches when a scope forces dark */
   --color-bg:            var(--p-stone-950);
   --color-surface:       var(--p-stone-900);
   --color-surface-alt:   var(--p-stone-800);
@@ -259,6 +283,7 @@
 
   --color-danger: var(--p-red-300); /* red-600 is 2.5:1 on dark cards */
 }
+[data-theme="light"] { color-scheme: light; }
 
 /* ---------------- Layer 3 · Component ---------------- */
 /* Per-component tokens derived from semantic. Reference these
@@ -283,6 +308,11 @@
   --header-bg:            color-mix(in srgb, var(--color-bg) 86%, transparent);
   --header-border:        var(--color-border);
   --footer-bg:            var(--color-surface-alt);
+
+  /* (CTA band surface: see the two scoped rules at the end of
+     site.css's CTA section — a root-level alias can't express it,
+     because custom properties substitute their var() references
+     where they are DEFINED, not where they are used.) */
 
   /* Links */
   --link-color:           var(--color-primary);

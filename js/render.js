@@ -30,6 +30,16 @@
     return node;
   }
 
+  /* Hand a built element to the page's entrance choreography
+     (reveal.js), with a small per-item stagger. Falls back to
+     "just show it" if reveal.js isn't there. */
+  function reveal(node, i) {
+    node.classList.add("reveal");
+    if (i) node.style.setProperty("--i", String(i));
+    if (window.__reveal) window.__reveal(node);
+    else node.classList.add("in");
+  }
+
   /* ---------- site.json — header/footer/contact spots ---------- */
   function applySite(site) {
     document.querySelectorAll("[data-site]").forEach(function (node) {
@@ -57,6 +67,10 @@
       inner.appendChild(link);
     }
     spot.appendChild(inner);
+    /* No entrance animation here, deliberately: the chip lands AFTER a
+       fetch, above the fold, into height-reserved space. Fading it in
+       would mean above-fold text at blended (sub-AA) contrast whenever
+       anything samples the page mid-fade; appearing at rest is quieter. */
     spot.hidden = false;
   }
 
@@ -67,15 +81,22 @@
     var items = (data.offerings || []).slice().sort(function (a, b) {
       return (a.order || 0) - (b.order || 0);
     });
-    items.forEach(function (o) {
+    items.forEach(function (o, idx) {
       /* a real link when there's a destination; a plain card otherwise
          (no focusable href="#" dead-ends for keyboard users) */
       var card = el(o.url ? "a" : "div", "offer-card");
       if (o.url) card.href = o.url;
+      /* "featured": true in offerings.json makes this the full-width
+         lead card of the 1 + 3 editorial composition */
+      if (o.featured) card.classList.add("offer-card--featured");
+      var num = el("span", "offer-card__num", (idx < 9 ? "0" : "") + (idx + 1));
+      num.setAttribute("aria-hidden", "true"); /* decorative index mark */
+      card.appendChild(num);
       card.appendChild(el("h3", "offer-card__title", o.title));
       card.appendChild(el("p", "offer-card__summary", o.summary));
       card.appendChild(el("span", "offer-card__cta", (o.cta || "Learn more") + " →"));
       spot.appendChild(card);
+      reveal(card, idx);
     });
   }
 
@@ -91,12 +112,14 @@
       if (limit > 0) upcoming = upcoming.slice(0, limit);
 
       if (!upcoming.length) {
-        spot.appendChild(el("li", "event-row event-row--empty",
-          "No dates are on the calendar right now. New retreats and talks are announced here first."));
+        var empty = el("li", "event-row event-row--empty",
+          "No dates are on the calendar right now. New retreats and talks are announced here first.");
+        spot.appendChild(empty);
+        reveal(empty);
         return;
       }
       var fmt = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
-      upcoming.forEach(function (e) {
+      upcoming.forEach(function (e, idx) {
         var row = el("li", "event-row");
         var when = el("div", "event-row__when");
         when.appendChild(el("span", "event-row__date", fmt.format(new Date(e.date + "T12:00:00"))));
@@ -119,6 +142,7 @@
         }
         row.appendChild(when); row.appendChild(what); row.appendChild(act);
         spot.appendChild(row);
+        reveal(row, idx);
       });
     });
   }
@@ -129,6 +153,8 @@
     if (!spot) return;
     var figure = el("div", "bio-card__figure");
     if (data.headshot) {
+      /* the chapel-window arch, echoing the story image's frame */
+      figure.classList.add("bio-card__figure--arch");
       var img = document.createElement("img");
       img.src = data.headshot;
       img.alt = "Portrait of " + (data.name || "Dr. Leslie Wells");
@@ -136,7 +162,7 @@
       img.width = 480; img.height = 600;
       figure.appendChild(img);
     } else {
-      /* No headshot set: the gold-framed monogram treatment. */
+      /* No headshot set: the olive-framed LW monogram treatment. */
       figure.classList.add("bio-card__figure--monogram");
       figure.appendChild(el("span", "bio-card__monogram", "LW"));
       figure.appendChild(el("span", "bio-card__mark-name", data.name || "Dr. Leslie Wells"));
@@ -149,6 +175,8 @@
     body.appendChild(more);
     spot.appendChild(figure);
     spot.appendChild(body);
+    reveal(figure);
+    reveal(body, 1);
   }
 
   /* ---------- boot: fetch only what the page asks for ---------- */

@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- LW monogram — oak ground, gold letterform (matches the Dawn Gold tokens) -->
-  <rect width="64" height="64" rx="12" fill="#241f19"/>
-  <rect x="4.5" y="4.5" width="55" height="55" rx="9" fill="none" stroke="#8f6a1e" stroke-opacity="0.55"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Cormorant Garamond, Palatino, Georgia, serif" font-size="30" font-weight="600" letter-spacing="1" fill="#ddbf7e">LW</text>
+  <!-- LW monogram — warm espresso ground, gold letterform
+       (matches the Warm Earthy Editorial tokens: stone-900 / signature gold) -->
+  <rect width="64" height="64" rx="12" fill="#2E2620"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="9" fill="none" stroke="#9C7418" stroke-opacity="0.6"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Iowan Old Style, Palatino, Georgia, serif" font-size="30" font-weight="500" letter-spacing="1" fill="#D9B34E">LW</text>
 </svg>

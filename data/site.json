@@ -2,6 +2,7 @@
   "_note": "Site-wide details that appear in the header, footer, and contact spots. Edit once here; every page picks it up.",
   "email": "DrLeslieWells@gmail.com",
   "phone_text_line": "Text 743-900-5574",
+  "phone_sms": "sms:+17439005574",
   "booking_url": "/book-dr-leslie.html",
   "teaching_site_url": "https://faithconsciousness.com",
   "teaching_site_label": "Faith Consciousness",

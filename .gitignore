@@ -9,3 +9,6 @@ Thumbs.db
 
 # Node (only if a tool is ever run locally; nothing is committed)
 node_modules/
+
+# Raw/working image material (cutout sources, previews) — finals only in assets/images
+assets/images/source/

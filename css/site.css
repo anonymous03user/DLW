@@ -10,13 +10,14 @@
 .eyebrow {
   display: block;
   font-size: var(--p-text-sm);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin: 0 0 var(--p-space-4);
 }
 .star {
-  color: var(--color-primary);
+  /* olive, same reason as .kicker__mark: terracotta = clickable only */
+  color: var(--color-secondary);
   margin-right: var(--p-space-2);
 }
 
@@ -46,7 +47,11 @@
   -webkit-backdrop-filter: saturate(1.2) blur(8px);
   backdrop-filter: saturate(1.2) blur(8px);
   border-bottom: 1px solid var(--header-border);
+  /* a soft shadow fades in once the page scrolls (nav.js toggles
+     .is-scrolled) — the small "alive" cue boutique headers have */
+  transition: box-shadow var(--p-dur-med) var(--p-ease);
 }
+.site-header.is-scrolled { box-shadow: var(--shadow-card); }
 .site-header__inner {
   display: flex;
   align-items: center;
@@ -120,7 +125,6 @@ body.nav-open { overflow: hidden; }
 @media (max-width: 860px) {
   .site-header__toggle { display: inline-flex; }
   .site-header__nav {
-    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -132,8 +136,34 @@ body.nav-open { overflow: hidden; }
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-pop);
     padding: var(--p-space-4) var(--p-space-5) var(--p-space-5);
+    /* eased open/closed (visibility keeps closed links out of the tab
+       order, so this is still "closed" to keyboards + screen readers).
+       visibility flips INSTANTLY on open (so focus can move into the
+       menu on the same keystroke) and only after the fade on close. */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--p-dur-fast) var(--p-ease),
+                transform var(--p-dur-fast) var(--p-ease),
+                visibility 0s linear var(--p-dur-fast);
   }
-  .site-header__nav.is-open { display: flex; }
+  .site-header__nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--p-dur-fast) var(--p-ease),
+                transform var(--p-dur-fast) var(--p-ease),
+                visibility 0s;
+  }
+  /* Scrim: the page recedes behind the open menu (tap it to close —
+     nav.js listens for outside taps) */
+  body.nav-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 15; /* under the sticky header (20), over the page */
+    background: color-mix(in srgb, var(--color-text) 24%, transparent);
+  }
   .site-header__nav a:not(.btn) {
     font-size: var(--p-text-base);
     padding-block: var(--p-space-3);
@@ -165,12 +195,21 @@ body.nav-open { overflow: hidden; }
 }
 .announce__link { font-weight: var(--p-weight-medium); }
 
-/* ---------------- Offer cards (rendered from offerings.json) ---------------- */
+/* ---------------- Offer cards (rendered from offerings.json) ----------------
+   An editorial INDEX, not a template grid: every card carries an
+   oversized Fraunces numeral (01–04), and the offering marked
+   "featured": true in offerings.json becomes a full-width lead card
+   on a warm terracotta wash — a 1 + 3 composition with a clear
+   first read. */
 .offers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--p-space-5);
   min-height: 16rem; /* reserved so the feed render doesn't shift layout */
+}
+@media (min-width: 860px) {
+  .offers-grid { grid-template-columns: repeat(3, 1fr); }
+  .offer-card--featured { grid-column: 1 / -1; }
 }
 .offer-card {
   display: flex;
@@ -183,9 +222,11 @@ body.nav-open { overflow: hidden; }
   padding: var(--card-pad);
   text-decoration: none;
   color: var(--color-text);
-  transition: transform var(--p-dur-fast) var(--p-ease),
-              box-shadow var(--p-dur-fast) var(--p-ease),
-              border-color var(--p-dur-fast) var(--p-ease);
+  /* dur-med: the lift and shadow crossfade actually EASE (160ms reads
+     as a snap on a 6px travel) */
+  transition: transform var(--p-dur-med) var(--p-ease),
+              box-shadow var(--p-dur-med) var(--p-ease),
+              border-color var(--p-dur-med) var(--p-ease);
 }
 .offer-card:hover {
   transform: translateY(-6px);
@@ -193,10 +234,19 @@ body.nav-open { overflow: hidden; }
   border-color: var(--color-border-strong);
   color: var(--color-text);
 }
+/* The index numeral — the serif voice carried into the card zone */
+.offer-card__num {
+  font-family: var(--font-heading);
+  font-variation-settings: "opsz" 144;
+  font-weight: var(--p-weight-normal);
+  font-size: var(--p-text-2xl);
+  line-height: 1;
+  color: var(--color-secondary);
+}
 .offer-card__title { font-size: var(--p-text-xl); margin: 0; }
 .offer-card__summary {
   color: var(--color-text-muted);
-  font-size: var(--p-text-sm);
+  font-size: var(--p-text-base);
   margin: 0;
   flex-grow: 1;
 }
@@ -204,8 +254,33 @@ body.nav-open { overflow: hidden; }
   color: var(--color-primary);
   font-weight: var(--p-weight-medium);
   font-size: var(--p-text-sm);
+  transition: color var(--p-dur-med) var(--p-ease);
 }
 .offer-card:hover .offer-card__cta { color: var(--color-primary-hover); }
+/* Featured lead card: terracotta wash, bigger voice. (Contrast on the
+   wash: title ink 12.0:1, summary 6.1:1, link 4.60:1, numeral 5.2:1 —
+   all AA, see tokens.css.) */
+.offer-card--featured {
+  background: var(--color-primary-soft);
+  border-color: transparent;
+}
+.offer-card--featured .offer-card__title {
+  font-size: var(--p-text-3xl);
+  font-weight: var(--p-weight-medium);
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+}
+.offer-card--featured .offer-card__num { font-size: var(--p-text-3xl); }
+@media (min-width: 860px) {
+  .offer-card--featured {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1.2fr) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--p-space-6);
+    padding-inline: var(--p-space-7);
+  }
+  .offer-card--featured .offer-card__summary { flex-grow: 0; }
+  .offer-card--featured .offer-card__cta { white-space: nowrap; }
+}
 
 /* ---------------- Event rows (rendered from events.json) ---------------- */
 .event-list {
@@ -233,6 +308,7 @@ body.nav-open { overflow: hidden; }
   font-weight: var(--p-weight-semibold);
   color: var(--color-text);
   line-height: var(--p-leading-tight);
+  text-wrap: balance; /* no orphaned year on its own line */
 }
 .event-row__time { font-size: var(--p-text-sm); color: var(--color-text-muted); }
 .event-row__title {
@@ -251,7 +327,7 @@ body.nav-open { overflow: hidden; }
      border only, which has no contrast minimum as decoration */
   font-size: var(--p-text-xs);
   font-weight: var(--p-weight-medium);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
   border: 1px solid var(--color-warning);
@@ -283,6 +359,13 @@ body.nav-open { overflow: hidden; }
   box-shadow: var(--card-shadow);
 }
 .bio-card__figure img { width: 100%; height: auto; }
+/* Real headshot: the chapel-window arch, echoing the story image —
+   the page's sacred frame motif, doubled on purpose. */
+.bio-card__figure--arch {
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 1.4rem 1.4rem;
+}
+.bio-card__figure--arch img { width: 100%; height: 100%; object-fit: cover; }
 .bio-card__figure--monogram {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -295,25 +378,25 @@ body.nav-open { overflow: hidden; }
   border: 1px solid var(--color-border);
 }
 .bio-card__figure--monogram::after {
-  /* inset terracotta frame, like a gallery mount */
+  /* inset frame, like a gallery mount (olive: terracotta = clickable only) */
   content: "";
   position: absolute;
   inset: 12px;
   pointer-events: none;
-  border: 1px solid var(--color-primary);
-  opacity: 0.35;
+  border: 1px solid var(--color-secondary);
+  opacity: 0.45;
   border-radius: var(--p-radius-sm);
 }
 .bio-card__monogram {
   font-family: var(--font-heading);
   font-weight: var(--p-weight-medium);
   font-size: var(--p-text-4xl);
-  letter-spacing: var(--p-tracking-wide);
-  color: var(--color-primary);
+  letter-spacing: var(--p-tracking-caps);
+  color: var(--color-secondary);
 }
 .bio-card__mark-name {
   font-size: var(--p-text-xs);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -341,6 +424,15 @@ body.nav-open { overflow: hidden; }
   padding: var(--p-space-8) var(--p-space-6);
   text-align: center;
 }
+/* On a DARK page the band's stone-950 is pixel-identical to the page
+   background and the most important block on the page disappears — so
+   dark pages give it the deep-ember wash instead. --color-primary-soft
+   resolves INSIDE the band's own data-theme="dark" scope = accent-900.
+   (Text on ember: 12.0:1, muted 5.62:1, links 5.68:1 — all AA.) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cta-band { background: var(--color-primary-soft); }
+}
+:root[data-theme="dark"] .cta-band { background: var(--color-primary-soft); }
 .cta-band h2 { color: var(--color-text); }
 .cta-band__lede {
   color: var(--color-text-muted);
@@ -358,6 +450,46 @@ body.nav-open { overflow: hidden; }
 .cta-band__alt { color: var(--color-text-muted); font-size: var(--p-text-sm); margin: 0; }
 .cta-band__alt a { color: var(--color-primary); }
 
+/* Editorial variant — authored by this brand, not borrowed from a
+   startup closer: left-set display headline beside a stacked action
+   column, with the direct-contact line as a hairline-ruled colophon.
+   (The base centered band remains for the interior pages until their
+   own editorial pass.) */
+.cta-band--editorial { text-align: left; }
+.cta-band--editorial h2 {
+  font-size: var(--p-text-4xl);
+  max-width: 14ch;
+  margin-bottom: var(--p-space-5);
+}
+.cta-band--editorial .cta-band__lede { margin-inline: 0; max-width: 44ch; }
+.cta-band--editorial .cta-band__actions {
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--p-space-5);
+}
+.cta-band--editorial .cta-band__alt {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--p-space-5);
+}
+@media (min-width: 860px) {
+  .cta-band--editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--p-space-7);
+    padding: var(--p-space-9) var(--p-space-8);
+  }
+  .cta-band--editorial h2,
+  .cta-band--editorial .cta-band__lede { grid-column: 1; }
+  .cta-band--editorial .cta-band__lede { margin-bottom: 0; }
+  .cta-band--editorial .cta-band__actions {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    justify-self: start;
+  }
+}
+
 /* ---------------- Buttons: size variant ---------------- */
 .btn--lg {
   --button-pad-y: var(--p-space-4);
@@ -366,7 +498,9 @@ body.nav-open { overflow: hidden; }
 }
 
 /* ---------------- Offer-page hero (shared by the 5 offering/booking pages) ---------------- */
-.offer-hero { padding-block: var(--p-space-9) var(--p-space-7); }
+/* fluid top air: matches the tightened mobile .section rhythm (a fixed
+   6rem hero over 3.5rem sections read top-heavy on phones) */
+.offer-hero { padding-block: var(--p-space-section) var(--p-space-7); }
 .offer-hero h1 { max-width: 22ch; }
 .offer-hero__lede {
   font-size: var(--p-text-lg);
@@ -381,9 +515,10 @@ body.nav-open { overflow: hidden; }
    (AA at small sizes); the warning hue is border-only (decorative). */
 .flag {
   display: inline-block;
+  font-family: var(--font-body); /* pills stay Hanken even in serif contexts */
   font-size: var(--p-text-xs);
   font-weight: var(--p-weight-medium);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
   border: 1px solid var(--color-warning);
@@ -413,7 +548,7 @@ body.nav-open { overflow: hidden; }
 .stub__label {
   display: block;
   font-size: var(--p-text-xs);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   font-weight: var(--p-weight-semibold);
   color: var(--color-text-subtle);
@@ -437,15 +572,23 @@ body.nav-open { overflow: hidden; }
 .site-footer__brand {
   font-family: var(--font-accent);
   font-weight: var(--p-weight-medium);
-  font-variation-settings: "opsz" 40, "SOFT" 40;
-  font-size: var(--p-text-xl);
+  font-variation-settings: "opsz" 60, "SOFT" 40;
+  font-size: var(--p-text-2xl);
   color: var(--color-text);
   margin-bottom: var(--p-space-3);
+}
+/* The teaching, signed quietly at the bottom of every page — the
+   footer's one editorial gesture (a colophon, not a sitemap). */
+.site-footer__voice {
+  font-size: var(--p-text-lg);
+  color: var(--color-text-muted);
+  max-width: 26ch;
+  margin-bottom: var(--p-space-5);
 }
 .site-footer h2 {
   font-family: var(--font-body);
   font-size: var(--p-text-sm);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
   font-weight: var(--p-weight-semibold);
@@ -502,17 +645,66 @@ body.nav-open { overflow: hidden; }
    adds .in as each element enters the viewport, with a per-element
    stagger via inline --i. No-JS and reduced-motion both show
    everything at rest — safe by construction. */
+/* Text entrances are RISE-ONLY, never faded, on purpose: partially
+   transparent text is text below AA contrast, and anything sampling
+   the page mid-entrance (an auditor, a slow device's long frame)
+   would catch it. Position doesn't affect contrast; opacity does.
+   Fades are reserved for imagery (.reveal--still below). */
 html.js .reveal {
-  opacity: 0;
   transform: translateY(14px);
-  will-change: opacity, transform;
-  transition: opacity var(--p-dur-slow) var(--p-ease-entrance),
-              transform var(--p-dur-slow) var(--p-ease-entrance);
+  transition: transform var(--p-dur-slow) var(--p-ease-entrance);
   transition-delay: calc(var(--i, 0) * 80ms);
 }
-html.js .reveal.in { opacity: 1; transform: none; }
+/* will-change only while the entrance is pending — the compositor
+   layers are released once each element has landed */
+html.js .reveal:not(.in) { will-change: transform; }
+html.js .reveal.in { transform: none; }
+
+/* Modifier for IMAGE/decor blocks only (no text inside): fade in
+   place, no rise. Used by the hero's full-bleed color field, where a
+   14px rise would expose a sliver of page background at the viewport
+   edge. */
+html.js .reveal--still {
+  transform: none;
+  opacity: 0;
+  transition: opacity var(--p-dur-slow) var(--p-ease-entrance);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+html.js .reveal--still:not(.in) { will-change: opacity; }
+html.js .reveal--still.in { opacity: 1; }
+
+/* --- Authored moments (the two beats a designer would remember) --- */
+
+/* 1. Her portrait settles into the hero: a slow, quiet rise layered
+   under the color field's fade. */
+html.js .hero-split__media.reveal img {
+  transform: translateX(-50%) translateY(14px);
+  transition: transform calc(var(--p-dur-slow) * 1.6) var(--p-ease-entrance);
+}
+html.js .hero-split__media.reveal.in img { transform: translateX(-50%) translateY(0); }
+
+/* 2. The arch image: a cinematic scale-settle (1.05 -> 1) under its
+   fade — the sacred window comes gently into focus. */
+html.js .editorial__media.reveal img {
+  transform: scale(1.05);
+  transition: transform calc(var(--p-dur-slow) * 2) var(--p-ease-entrance);
+}
+html.js .editorial__media.reveal.in img { transform: scale(1); }
+
+/* 3. The gold signature word arrives one beat AFTER its line has
+   landed — ink first, then the gold blooms. */
+html.js .reveal:not(.in) .hl-accent { color: inherit; }
+html.js .reveal .hl-accent {
+  transition: color var(--p-dur-slow) var(--p-ease-entrance);
+  transition-delay: calc(var(--p-dur-slow) * 0.8);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal, html.js .reveal--still { opacity: 1; transform: none; transition: none; }
+  html.js .hero-split__media.reveal img { transform: translateX(-50%); transition: none; }
+  html.js .editorial__media.reveal img { transform: none; transition: none; }
+  html.js .reveal .hl-accent,
+  html.js .reveal:not(.in) .hl-accent { color: var(--color-signature); transition: none; }
 }
 
 /* ============================================================
@@ -527,12 +719,14 @@ html.js .reveal.in { opacity: 1; transform: none; }
   font-family: var(--font-body);
   font-size: var(--p-text-xs);
   font-weight: var(--p-weight-semibold);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-secondary);
   margin: 0 0 var(--p-space-4);
 }
-.kicker__mark { color: var(--color-primary); margin-right: var(--p-space-2); }
+/* Star matches its kicker text: terracotta is reserved for INTERACTIVE
+   elements only (an ironclad "if it's terracotta you can click it"). */
+.kicker__mark { color: var(--color-secondary); margin-right: var(--p-space-2); }
 
 /* Display heading helper — Fraunces at high optical size, elegant weight */
 .display {
@@ -599,9 +793,16 @@ html.js .reveal.in { opacity: 1; transform: none; }
 }
 .hero-split__textlink:hover { text-decoration-color: var(--color-primary); }
 /* Announcement now sits BELOW the CTA as a quiet "what's bookable" note,
-   so the headline always leads the block (the "here I am" opener). */
-.hero-split__announce { margin-top: var(--p-space-6); }
-.hero-split__announce:empty, .hero-split__announce .announce[hidden] { display: none; }
+   so the headline always leads the block (the "here I am" opener).
+   Height is RESERVED (responsive: the chip wraps to ~3 lines on phones)
+   so nothing in the hero jumps when the chip renders after the JSON
+   fetch — the reservation matters most on the smallest screens. */
+.hero-split__announce { margin-top: var(--p-space-6); min-height: 3.25rem; }
+@media (max-width: 700px) {
+  /* 5.5rem: the 3-line chip measures ~85px; the extra headroom absorbs
+     font-metric variance so the hero truly never shifts */
+  .hero-split__announce { min-height: 5.5rem; }
+}
 
 /* Mobile "here I am": her portrait leads, right under the header, so the
    first thing seen is HER — then her name and the pitch below. */
@@ -632,11 +833,19 @@ html.js .reveal.in { opacity: 1; transform: none; }
   line-height: 1;
   color: var(--color-text);
 }
+/* The "+" as a designed mark: smaller, raised, olive — the numeral
+   reads as a set object, not raw text. (4.7:1 on the band tint at
+   this size — large-text AA.) */
+.stat__plus {
+  font-size: 0.55em;
+  vertical-align: 0.5em;
+  color: var(--color-secondary);
+}
 .stat__label {
   display: block;
   margin-top: var(--p-space-3);
   font-size: var(--p-text-xs);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -644,7 +853,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
   display: inline-block;
   margin-top: var(--p-space-2);
   font-size: 0.66rem;
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
   border: 1px solid var(--color-warning);
@@ -671,6 +880,9 @@ html.js .reveal.in { opacity: 1; transform: none; }
   overflow: hidden;
   box-shadow: var(--shadow-pop);
   background: var(--color-surface-alt);
+  /* hairline so a dark image still reads as a shaped frame on the
+     dark page (the arch silhouette otherwise merges into stone-950) */
+  border: 1px solid var(--color-border);
 }
 .editorial__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Arch variant — a soft chapel-window top, sacred without kitsch */
@@ -681,26 +893,45 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .editorial__grid { grid-template-columns: 1fr 1fr; gap: var(--p-space-8); }
   .editorial--flip .editorial__media { order: 2; }
 }
+/* Phone: the words lead, the image illustrates — the reader meets the
+   headline first, then the photo lands as its illustration. */
+@media (max-width: 859px) {
+  .editorial__media { order: 2; }
+}
 
-/* ---------------- Manifesto pull-quote band ---------------- */
+/* ---------------- Manifesto pull-quote band ----------------
+   The spiritual centerpiece — scaled to be the page's second-loudest
+   moment (only the hero outranks it), with a hanging star mark and
+   extra silence around it (.section--spacious in the markup). The
+   one gold signature word lives here. */
 .manifesto { background: var(--color-surface-alt); text-align: center; }
+.manifesto__mark {
+  display: block;
+  font-size: var(--p-text-xl);
+  color: var(--color-secondary);
+  margin-bottom: var(--p-space-5);
+}
 .manifesto__quote {
   font-family: var(--font-accent);
   font-style: italic;
   font-variation-settings: "opsz" 144, "SOFT" 60;
   font-weight: var(--p-weight-normal);
-  font-size: var(--p-text-3xl);
-  line-height: 1.18;
+  font-size: var(--p-text-4xl);
+  line-height: 1.14;
   letter-spacing: -0.01em;
   color: var(--color-text);
-  max-width: 24ch;
+  max-width: 22ch;
   margin: 0 auto;
   text-wrap: balance;
 }
 .manifesto__cite {
-  margin-top: var(--p-space-5);
+  margin-top: var(--p-space-6);
+  /* margin-inline centers the cite's BOX on the quote's axis — base.css
+     caps p width at 62ch, which otherwise pins the box left while
+     text-align centers the words inside the mis-placed box */
+  margin-inline: auto;
   font-size: var(--p-text-sm);
-  letter-spacing: var(--p-tracking-wide);
+  letter-spacing: var(--p-tracking-caps);
   text-transform: uppercase;
   color: var(--color-secondary);
 }

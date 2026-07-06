@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Native form controls + scrollbars follow the site's theme, and the
+       phone's browser chrome tints to match the page -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#F6F1E7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1E1811" media="(prefers-color-scheme: dark)" />
   <script>document.documentElement.classList.add("js")</script>
   <title>Page not found | Dr. Leslie Wells</title>
   <meta name="robots" content="noindex" />
@@ -11,6 +16,7 @@
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <style>
     .lost { padding-block: var(--p-space-10); text-align: center; }
     .lost .star { font-size: var(--p-text-2xl); display: block; margin: 0 auto var(--p-space-4); }

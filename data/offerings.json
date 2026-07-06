@@ -1,12 +1,13 @@
 {
-  "_note": "These cards appear in the 'Ways to work together' section of the home page. Edit a title or summary and the site updates on the next deploy. 'order' controls the display order (1 shows first).",
+  "_note": "These cards appear in the 'Ways to work together' section of the home page. Edit a title or summary and the site updates on the next deploy. 'order' controls the display order (1 shows first). Set \"featured\": true on ONE offering to make it the big lead card at the top.",
   "offerings": [
     {
       "title": "Speaking",
       "summary": "Keynotes and inspirational talks for organizations, conferences, and gatherings, where scripture, science, and spirit meet.",
       "url": "/speaking.html",
       "cta": "Invite her to speak",
-      "order": 1
+      "order": 1,
+      "featured": true
     },
     {
       "title": "Healing Events & Health Fairs",
